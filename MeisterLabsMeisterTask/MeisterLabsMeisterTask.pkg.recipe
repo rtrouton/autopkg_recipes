@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the current MeisterTask installer, extracts version information and renames the installer package.</string>
 	<key>Identifier</key>
-	<string>corp.sap.maccoe.pkg.MeisterTask</string>
+	<string>corp.sap.maccoe.pkg.MeisterLabsMeisterTask</string>
 	<key>Input</key>
 	<dict>
         <key>VENDOR</key>
@@ -16,7 +16,7 @@
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>corp.sap.maccoe.download.MeisterTask</string>
+	<string>com.github.rtrouton.download.MeisterTask</string>
 	<key>Process</key>
 	<array>
         <dict>
