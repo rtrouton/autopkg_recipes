@@ -10,14 +10,14 @@
     <dict>
         <key>NAME</key>
         <string>Microsoft Office 2016</string>
+        <key>VENDOR</key>
+        <string>Microsoft</string>
+        <key>SOFTWARETITLE</key>
+        <string>Office_2016</string>
         <key>ID</key>
         <string>525133</string>        
         <key>DOWNLOAD_URL_BASE</key>
         <string>http://go.microsoft.com/fwlink/?linkid=</string>
-        <key>VENDOR</key>
-        <string>Microsoft</string>
-        <key>SOFTWARE_TITLE</key>
-        <string>Office_2016</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -35,7 +35,7 @@
                 <key>url</key>
                 <string>%DOWNLOAD_URL_BASE%%ID%</string>
                 <key>filename</key>
-                <string>%VENDOR%_%SOFTWARE_TITLE%_%VERSION%.pkg</string>
+                <string>%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
             </dict>
         </dict>
         <dict>
