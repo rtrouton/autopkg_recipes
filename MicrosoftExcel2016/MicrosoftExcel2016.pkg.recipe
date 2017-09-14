@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the current release version of Microsoft Excel 2016 and extracts the version information from the installer package.</string>
 	<key>Identifier</key>
-	<string>corp.sap.maccoe.pkg.MicrosoftExcel</string>
+	<string>corp.sap.maccoe.pkg.MicrosoftExcel2016</string>
 	<key>Input</key>
 	<dict>
         <key>VENDOR</key>
