@@ -28,7 +28,7 @@
         <key>MinimumVersion</key>
         <string>1.0.0</string>
         <key>ParentRecipe</key>
-        <string>corp.sap.maccoe.pkg.MicrosoftOffice2016Suite</string>
+        <string>corp.sap.maccoe.pkg.MicrosoftExcel2016</string>
         <key>Process</key>
         <array>
             <dict>
