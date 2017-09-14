@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Uses parent download recipe to download the latest unlicensed Microsoft Office 2016 installer package.</string>
 	<key>Identifier</key>
-	<string>corp.sap.maccoe.MicrosoftOffice2016Suite</string>
+	<string>corp.sap.maccoe.pkg.MicrosoftOffice2016Suite</string>
 	<key>Input</key>
 	<dict>
 	</dict>
