@@ -36,6 +36,9 @@ Set the REGION key to:
             <dict>
                 <key>url</key>
                 <string>%DOWNLOAD_URL_BASE%%REGION%</string>
+                <key>filename</key>
+                <string>Microsoft_Office_2016_%VERSION%.pkg</string>
+            </dict>
             </dict>
         </dict>
         <dict>
