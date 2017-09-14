@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest Microsoft Office 2016 SKU-less installer package.
-
-Set the REGION key to:
-
-525133 for Americas (default)
-532572 for Europe
-532577 for Asia</string>
+    <string>Downloads the latest Microsoft Office 2016 SKU-less installer package.</string>
     <key>Identifier</key>
     <string>corp.sap.maccoe.download.MicrosoftOffice2016Suite</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>Microsoft Office 2016</string>
-        <key>REGION</key>
+        <key>ID</key>
         <string>525133</string>        
         <key>DOWNLOAD_URL_BASE</key>
         <string>http://go.microsoft.com/fwlink/?linkid=</string>
+        <key>VENDOR</key>
+        <string>Microsoft</string>
+        <key>SOFTWARE_TITLE</key>
+        <string>Office_2016</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -35,10 +33,9 @@ Set the REGION key to:
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%DOWNLOAD_URL_BASE%%REGION%</string>
+                <string>%DOWNLOAD_URL_BASE%%ID%</string>
                 <key>filename</key>
-                <string>Microsoft_Office_2016_%VERSION%.pkg</string>
-            </dict>
+                <string>%VENDOR%_%SOFTWARE_TITLE%_%VERSION%.pkg</string>
             </dict>
         </dict>
         <dict>
