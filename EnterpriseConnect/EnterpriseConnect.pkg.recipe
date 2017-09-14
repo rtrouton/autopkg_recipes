@@ -5,14 +5,18 @@
 	<key>Description</key>
 	<string>Downloads the current Apple Enterprise Connect installer, extracts version information and renames the installer package.</string>
 	<key>Identifier</key>
-	<string>com.github.rtrouton.pkg.EnterpriseConnect</string>
+	<string>corp.sap.maccoe.pkg.EnterpriseConnect</string>
 	<key>Input</key>
 	<dict>
+        <key>VENDOR</key>
+        <string>Apple</string>
+        <key>SOFTWARETITLE</key>
+        <string>Enterprise_Connect</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.8.0</string>
 	<key>ParentRecipe</key>
-	<string>com.github.rtrouton.download.EnterpriseConnect</string>
+	<string>corp.sap.maccoe.download.EnterpriseConnect</string>
 	<key>Process</key>
 	<array>
         <dict>
@@ -87,7 +91,7 @@
                 <key>source_pkg</key>
                 <string>%found_filename%</string>
                 <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <string>%RECIPE_CACHE_DIR%/%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
             </dict>
         </dict>
         <dict>
