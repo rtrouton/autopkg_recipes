@@ -3,51 +3,29 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the current Apple Enterprise Connect installer, extracts version information and renames the installer package.</string>
+	<string>Downloads the current MeisterTask installer, extracts version information and renames the installer package.</string>
 	<key>Identifier</key>
-	<string>corp.sap.maccoe.pkg.EnterpriseConnect</string>
+	<string>corp.sap.maccoe.pkg.MeisterTask</string>
 	<key>Input</key>
 	<dict>
         <key>VENDOR</key>
-        <string>Apple</string>
+        <string>MeisterLabs</string>
         <key>SOFTWARETITLE</key>
-        <string>Enterprise_Connect</string>
+        <string>MeisterTask</string>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>0.8.0</string>
+	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>corp.sap.maccoe.download.EnterpriseConnect</string>
+	<string>corp.sap.maccoe.download.MeisterTask</string>
 	<key>Process</key>
 	<array>
-        <dict>
-            <key>Processor</key>
-            <string>Unarchiver</string>
-            <key>Arguments</key>
-            <dict>
-                <key>archive_path</key>
-                <string>%pathname%</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unzip</string>
-                <key>purge_destination</key>
-                <false/>
-            </dict>
-        </dict>
-        <dict>
-        	<key>Processor</key>
-        	<string>FileFinder</string>
-        	<key>Arguments</key>
-        	<dict>
-        		<key>pattern</key>
-        		<string>%RECIPE_CACHE_DIR%/unzip/%NAME%*/*.pkg</string>
-        	</dict>
-        </dict>
         <dict>
             <key>Processor</key>
             <string>FlatPkgUnpacker</string>
             <key>Arguments</key>
             <dict>
                 <key>flat_pkg_path</key>
-                <string>%found_filename%</string>
+                <string>%pathname%</string>
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack</string>
             </dict>
@@ -58,7 +36,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/EnterpriseConnect.pkg/Payload</string>
+                <string>%RECIPE_CACHE_DIR%/unpack/com.meisterlabs.meistertask.desktop.pkg/Payload</string>
                 <key>extract_root</key>
                 <string>%RECIPE_CACHE_DIR%/unpack</string>
             </dict>
@@ -69,19 +47,10 @@
             <key>Arguments</key>
             <dict>
                 <key>input_plist_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/Applications/%NAME%.app/Contents/Info.plist</string>
+                <string>%RECIPE_CACHE_DIR%/unpack/%NAME%.app/Contents/Info.plist</string>
                 <key>plist_version_key</key>
                 <string>CFBundleShortVersionString</string>
             </dict>
-        </dict>
-        <dict>
-        	<key>Processor</key>
-        	<string>FileFinder</string>
-        	<key>Arguments</key>
-        	<dict>
-        		<key>pattern</key>
-        		<string>%RECIPE_CACHE_DIR%/unzip/%NAME%*/*.pkg</string>
-        	</dict>
         </dict>
         <dict>
             <key>Processor</key>
@@ -89,7 +58,7 @@
             <key>Arguments</key>
             <dict>
                 <key>source_pkg</key>
-                <string>%found_filename%</string>
+                <string>%pathname%</string>
                 <key>pkg_path</key>
                 <string>%RECIPE_CACHE_DIR%/%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
             </dict>
@@ -99,7 +68,6 @@
         <dict>
             <key>path_list</key>
             <array>
-                <string>%RECIPE_CACHE_DIR%/unzip</string>
                 <string>%RECIPE_CACHE_DIR%/unpack</string>
             </array>
         </dict>

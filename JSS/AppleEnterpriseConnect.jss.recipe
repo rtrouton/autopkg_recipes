@@ -5,7 +5,7 @@
         <key>Description</key>
         <string>Uses parent pkg recipe to download the latest Apple Enterprise Connect and import it into the JSS.</string>
         <key>Identifier</key>
-        <string>corp.sap.maccoe.jss.EnterpriseConnect</string>
+        <string>corp.sap.maccoe.jss.AppleEnterpriseConnect</string>
         <key>Input</key>
         <dict>
             <key>NAME</key>
@@ -17,7 +17,7 @@
             <key>POLICY_TEMPLATE</key>
             <string>%RECIPE_DIR%/PolicyTemplate.xml</string>
             <key>ICON</key>
-            <string>%RECIPE_DIR%/EnterpriseConnect.png</string>
+            <string>%RECIPE_DIR%/AppleEnterpriseConnect.png</string>
             <key>GROUP_TEMPLATE</key>
             <string>%RECIPE_DIR%/SmartGroupTemplate.xml</string>
             <key>GROUP_NAME</key>
@@ -26,9 +26,9 @@
             <string>Apple Enterprise Connect is a helpful replacement for Active Directory bindings, using Kerberos and other resources to provide Active Directory services.</string>
         </dict>
         <key>MinimumVersion</key>
-        <string>0.8.0</string>
+        <string>1.0.0</string>
         <key>ParentRecipe</key>
-        <string>corp.sap.maccoe.pkg.EnterpriseConnect</string>
+        <string>corp.sap.maccoe.pkg.AppleEnterpriseConnect</string>
         <key>Process</key>
         <array>
             <dict>
