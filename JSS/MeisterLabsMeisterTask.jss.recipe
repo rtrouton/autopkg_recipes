@@ -21,7 +21,7 @@
             <key>GROUP_TEMPLATE</key>
             <string>%RECIPE_DIR%/SmartGroupTemplate.xml</string>
             <key>GROUP_NAME</key>
-            <string>%NAME%-update-smart</string>
+            <string>Update-Smart-%NAME%</string>
             <key>DESCRIPTION</key>
             <string>Meister Labs's MeisterTask is a project and task management tool which works with the MeisterTask online service.</string>
         </dict>
