@@ -61,7 +61,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkgname</key>
-                <string>%RECIPE_CACHE_DIR%/%VENDOR%_%SOFTWARETITLE%_%version%</string>
+                <string>%VENDOR%_%SOFTWARETITLE%_%version%</string>
                 <key>pkg_request</key>
                 <dict>
                     <key>pkgdir</key>
