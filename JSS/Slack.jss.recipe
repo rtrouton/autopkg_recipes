@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads TeamViewerQS disk image, extracts the application, creates an installer package and imports it into your JSS.</string>
+	<string>Downloads Slack zip file, extracts the application, creates an installer package and imports it into your JSS.</string>
 	<key>Identifier</key>
-	<string>corp.sap.maccoe.jss.TeamViewerQS</string>
+	<string>corp.sap.maccoe.jss.Slack</string>
 	<key>Input</key>
 	<dict>
 		<key>CATEGORY</key>
@@ -15,20 +15,20 @@
 		<key>GROUP_TEMPLATE</key>
 		<string>SmartGroupTemplate.xml</string>
 		<key>NAME</key>
-		<string>TeamViewerQS</string>
+		<string>Slack</string>
 		<key>POLICY_CATEGORY</key>
 		<string>Testing</string>
 		<key>POLICY_TEMPLATE</key>
 		<string>PolicyTemplate.xml</string>
 		<key>SELF_SERVICE_DESCRIPTION</key>
-		<string>Optimized for instant remote desktop support, this small customer module does not require installation or administrator rights — simply download, double click, and give the provided ID and password to your supporter.</string>
+		<string>When your team needs to kick off a project, hire a new employee, deploy some code, review a sales contract, finalize next year's budget, plan your next office opening, and more, Slack has you covered.</string>
 		<key>SELF_SERVICE_ICON</key>
-		<string>%RECIPE_DIR%/TeamViewerQS.png</string>
+		<string>%RECIPE_DIR%/Slack.png</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>corp.sap.maccoe.pkg.TeamViewerQS</string>
+	<string>corp.sap.maccoe.pkg.Slack</string>
 	<key>Process</key>
 	<array>
 		<dict>
