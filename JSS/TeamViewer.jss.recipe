@@ -21,7 +21,7 @@
 		<key>POLICY_TEMPLATE</key>
 		<string>PolicyTemplate.xml</string>
 		<key>SELF_SERVICE_DESCRIPTION</key>
-		<string>Connect to remote computers, provide remote support, & collaborate online with TeamViewer, the world leader in remote desktop access solutions.</string>
+		<string>Connect to remote computers, provide remote support and collaborate online with TeamViewer, the world leader in remote desktop access solutions.</string>
 		<key>SELF_SERVICE_ICON</key>
 		<string>%RECIPE_DIR%/TeamViewer.png</string>
 	</dict>
