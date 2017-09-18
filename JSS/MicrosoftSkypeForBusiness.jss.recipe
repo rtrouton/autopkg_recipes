@@ -9,7 +9,7 @@
 	<key>Input</key>
 	<dict>
 		<key>CATEGORY</key>
-		<string>Microsoft</string>
+		<string>Apps</string>
 		<key>GROUP_NAME</key>
 		<string>Update-Smart-%NAME%</string>
 		<key>GROUP_TEMPLATE</key>
