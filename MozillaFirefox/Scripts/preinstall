@@ -1,0 +1,5 @@
+#!/bin/bash
+
+/bin/rm -rf "$3/Applications/Firefox.app"
+
+exit 0
