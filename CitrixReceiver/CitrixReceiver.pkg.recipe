@@ -96,10 +96,10 @@
                <string>#!/bin/bash
 
 # postinstall.sh, 0.1.1
-# (c) 2016, SAP SE (Marc Thielemann &amp;lt;marc.thielemann@sap.com&amp;gt;)
+# (c) 2016, SAP SE (Marc Thielemann &lt;marc.thielemann@sap.com&gt;)
 
 # latest change:
-# 2016/08/31, Marc Thielemann &amp;lt;marc.thielemann@sap.com&amp;gt;
+# 2016/08/31, Marc Thielemann &lt;marc.thielemann@sap.com&gt;
 
 
 PKG="${0%/*}/Install Citrix Receiver.pkg"
