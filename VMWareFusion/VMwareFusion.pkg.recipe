@@ -10,6 +10,8 @@
 	<dict>
         <key>NAME</key>
         <string>VMware Fusion</string>
+        <key>PACKAGER</key>
+        <string>SAPCorp</string>
         <key>VENDOR</key>
         <string>VMware</string>
         <key>SOFTWARETITLE</key>
@@ -106,7 +108,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>pkgname</key>
-				<string>%VENDOR%_%SOFTWARETITLE%_%version%</string>
+				<string>%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%</string>
 				<key>pkg_request</key>
 				<dict>
 					<key>pkgdir</key>
