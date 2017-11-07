@@ -3,13 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest Google Chrome disk image and builds a package. The installer package includes a preinstall script that will check for an existing Google Chrome.app in /Applications and remove it if found.</string>
+    <string>Downloads latest Google Chrome disk image and builds a package. The installer package includes a preinstall script that will check for an existing Google Chrome.app in /Applications and remove it if found. It also contains a postinstall script which configures automatic Chrome updates for all users.</string>
     <key>Identifier</key>
     <string>corp.sap.maccoe.pkg.GoogleChrome</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>Google Chrome</string>
+        <key>PACKAGER</key>
+        <string>SAPCorp</string>
         <key>VENDOR</key>
         <string>Google</string>
         <key>SOFTWARETITLE</key>
@@ -61,13 +63,15 @@
                 <key>pkg_request</key>
                 <dict>
                     <key>pkgname</key>
-                    <string>%VENDOR%_%SOFTWARETITLE%_%version%</string>
+                    <string>%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%</string>
                     <key>version</key>
                     <string>%version%</string>
                     <key>id</key>
                     <string>%bundleid%</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
+                    <key>scripts</key>
+                    <string>Scripts</string>
                     <key>chown</key>
                     <array>
                         <dict>

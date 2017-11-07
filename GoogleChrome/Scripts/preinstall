@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Remove previous version of Google Chrome from /Applications
+
+if [ -d "$3/Applications/Google Chrome.app" ]; then
+   rm -rf "$3/Applications/Google Chrome.app"
+fi
+
