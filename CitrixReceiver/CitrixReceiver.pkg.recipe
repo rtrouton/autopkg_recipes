@@ -16,6 +16,8 @@
          <string>Citrix</string>
          <key>SOFTWARETITLE</key>
          <string>Receiver</string>
+         <key>SIGNINGCERTIFICATE</key>
+         <string>Put_Signing_Certificate_into_AutoPkg_recipe_override</string>
       </dict>
       <key>MinimumVersion</key>
       <string>1.0.0</string>
@@ -23,6 +25,15 @@
       <string>io.github.hjuutilainen.download.CitrixReceiver</string>
       <key>Process</key>
       <array>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>predicate</key>
+               <string>SIGNINGCERTIFICATE == "Put_Signing_Certificate_into_AutoPkg_recipe_override"</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+         </dict>
          <dict>
             <key>Arguments</key>
             <dict>
@@ -108,25 +119,25 @@ ERROR=0
 if [[ -f "$PKG" ]]; then
 
 	CURRENT_USER=$(/bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }')
-	
+
 	if [[ -n "$CURRENT_USER" ]] ;then
-	
+
 		# get path to user's home directory
 		USER_HOME=$(/usr/bin/dscl . -read "/Users/$CURRENT_USER" NFSHomeDirectory | /usr/bin/sed 's/^[^\/]*//g')
-			
+
 		export HOME="$USER_HOME"
-		
-	else 
+
+	else
 		export HOME="/var/root"
 	fi
-	
+
 	/usr/sbin/installer -pkg "$PKG" -target "$3"
-	
+
 	if [[ $? -ne 0 ]]; then
 		/usr/bin/logger -t "SAPCorp: ${0##*/}" "ERROR! Installation of package $PKG failed"
 		ERROR=1
 	fi
-	
+
 else
 	/usr/bin/logger -t "SAPCorp: ${0##*/}" "ERROR! Package $PKG not found"
 	ERROR=1
@@ -166,6 +177,17 @@ exit $ERROR</string>
                   <key>scripts</key>
                   <string>Scripts</string>
                </dict>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>PkgSigner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>pkg_path</key>
+               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
+               <key>signing_cert</key>
+               <string>%SIGNINGCERTIFICATE%</string>
             </dict>
          </dict>
          <dict>

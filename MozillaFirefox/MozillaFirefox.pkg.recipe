@@ -16,6 +16,8 @@
          <string>Mozilla</string>
          <key>SOFTWARETITLE</key>
          <string>%NAME%</string>
+         <key>SIGNINGCERTIFICATE</key>
+         <string>Put_Signing_Certificate_into_AutoPkg_recipe_override</string>
       </dict>
       <key>MinimumVersion</key>
       <string>1.0.0</string>
@@ -23,6 +25,15 @@
       <string>com.github.autopkg.download.firefox-rc-en_US</string>
       <key>Process</key>
       <array>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>predicate</key>
+               <string>SIGNINGCERTIFICATE == "Put_Signing_Certificate_into_AutoPkg_recipe_override"</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+         </dict>
          <dict>
             <key>Processor</key>
             <string>AppDmgVersioner</string>
@@ -86,6 +97,17 @@
                      </dict>
                   </array>
                </dict>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>PkgSigner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>pkg_path</key>
+               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
+               <key>signing_cert</key>
+               <string>%SIGNINGCERTIFICATE%</string>
             </dict>
          </dict>
       </array>

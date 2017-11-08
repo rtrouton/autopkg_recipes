@@ -10,10 +10,14 @@
     <dict>
         <key>NAME</key>
         <string>Microsoft Teams</string>
+         <key>PACKAGER</key>
+         <string>SAPCorp</string>
         <key>VENDOR</key>
         <string>Microsoft</string>
         <key>SOFTWARETITLE</key>
         <string>Teams</string>
+         <key>SIGNINGCERTIFICATE</key>
+         <string>Put_Signing_Certificate_into_AutoPkg_recipe_override</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -21,6 +25,15 @@
     <string>com.github.apettinen.download.MSTeams</string>
     <key>Process</key>
     <array>
+        <dict>
+        	<key>Arguments</key>
+        	<dict>
+        		<key>predicate</key>
+        		<string>SIGNINGCERTIFICATE == "Put_Signing_Certificate_into_AutoPkg_recipe_override"</string>
+        	</dict>
+        	<key>Processor</key>
+        	<string>StopProcessingIf</string>
+        </dict>
         <dict>
             <key>Processor</key>
             <string>AppDmgVersioner</string>
@@ -61,7 +74,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkgname</key>
-                <string>%VENDOR%_%SOFTWARETITLE%_%version%</string>
+                <string>%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%</string>
                 <key>pkg_request</key>
                 <dict>
                     <key>pkgdir</key>
@@ -82,6 +95,17 @@
                         </dict>
                     </array>
                 </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgSigner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
+                <key>signing_cert</key>
+                <string>%SIGNINGCERTIFICATE%</string>
             </dict>
         </dict>
     </array>

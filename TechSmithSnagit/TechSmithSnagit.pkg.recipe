@@ -1,104 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-    <key>Description</key>
-    <string>Downloads Snagit disk image and builds a package.</string>
-    <key>Identifier</key>
-    <string>corp.sap.maccoe.pkg.TechSmithSnagit</string>
-    <key>Input</key>
-    <dict>
-        <key>NAME</key>
-        <string>Snagit</string>
+   <dict>
+      <key>Description</key>
+      <string>Downloads Snagit disk image and builds a package.</string>
+      <key>Identifier</key>
+      <string>corp.sap.maccoe.pkg.TechSmithSnagit</string>
+      <key>Input</key>
+      <dict>
+         <key>NAME</key>
+         <string>Snagit</string>
          <key>PACKAGER</key>
          <string>SAPCorp</string>
          <key>VENDOR</key>
          <string>Techsmith</string>
          <key>SOFTWARETITLE</key>
          <string>%NAME%</string>
-        <key>SNAGIT_KEY</key>
-        <string></string>
-    </dict>
-    <key>MinimumVersion</key>
-    <string>1.0.0</string>
-    <key>ParentRecipe</key>
-    <string>com.github.autopkg.kernsb.download.TechSmithSnagit</string>
-    <key>Process</key>
-    <array>
-        <dict>
+         <key>SNAGIT_KEY</key>
+         <string>Put_Snagit_Registration_Key_into_AutoPkg_recipe_override</string>
+         <key>SIGNINGCERTIFICATE</key>
+         <string>Put_Signing_Certificate_into_AutoPkg_recipe_override</string>
+      </dict>
+      <key>MinimumVersion</key>
+      <string>1.0.0</string>
+      <key>ParentRecipe</key>
+      <string>com.github.autopkg.kernsb.download.TechSmithSnagit</string>
+      <key>Process</key>
+      <array>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>predicate</key>
+               <string>SIGNINGCERTIFICATE == "Put_Signing_Certificate_into_AutoPkg_recipe_override"</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+         </dict>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>predicate</key>
+               <string>SNAGIT_KEY == "Put_Snagit_Registration_Key_into_AutoPkg_recipe_override"</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+         </dict>
+         <dict>
             <key>Processor</key>
             <string>TechSmithAddScriptKey</string>
             <key>Arguments</key>
             <dict>
-                <key>REG_KEY</key>
-                <string>%SNAGIT_KEY%</string>
+               <key>REG_KEY</key>
+               <string>%SNAGIT_KEY%</string>
             </dict>
-        </dict>
-        <dict>
+         </dict>
+         <dict>
             <key>Processor</key>
             <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
+               <key>dmg_path</key>
+               <string>%pathname%</string>
             </dict>
-        </dict>
-        <dict>
+         </dict>
+         <dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>
             <key>Arguments</key>
             <dict>
-                <key>pkgroot</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                <key>pkgdirs</key>
-                <dict>
-                    <key>Applications</key>
-                    <string>0775</string>
-                </dict>
+               <key>pkgroot</key>
+               <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+               <key>pkgdirs</key>
+               <dict>
+                  <key>Applications</key>
+                  <string>0775</string>
+               </dict>
             </dict>
-        </dict>
-        <dict>
+         </dict>
+         <dict>
             <key>Processor</key>
             <string>Copier</string>
             <key>Arguments</key>
             <dict>
-                <key>source_path</key>
-                <string>%pathname%/%app_name%</string>
-                <key>destination_path</key>
-                <string>%pkgroot%/Applications/%app_name%</string>
+               <key>source_path</key>
+               <string>%pathname%/%app_name%</string>
+               <key>destination_path</key>
+               <string>%pkgroot%/Applications/%app_name%</string>
             </dict>
-        </dict>
-        <dict>
+         </dict>
+         <dict>
             <key>Processor</key>
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
-                <key>pkgname</key>
-                <string>%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%</string>
-                <key>pkg_request</key>
-                <dict>
-                    <key>pkgdir</key>
-                    <string>%RECIPE_CACHE_DIR%</string>
-                    <key>id</key>
-                    <string>%bundleid%</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
-                    <key>scripts</key>
-                    <string>Scripts</string>
-                    <key>chown</key>
-                    <array>
-                        <dict>
-                            <key>path</key>
-                            <string>Applications</string>
-                            <key>user</key>
-                            <string>root</string>
-                            <key>group</key>
-                            <string>admin</string>
-                        </dict>
-                    </array>
-                </dict>
+               <key>pkgname</key>
+               <string>%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%</string>
+               <key>pkg_request</key>
+               <dict>
+                  <key>pkgdir</key>
+                  <string>%RECIPE_CACHE_DIR%</string>
+                  <key>id</key>
+                  <string>%bundleid%</string>
+                  <key>options</key>
+                  <string>purge_ds_store</string>
+                  <key>scripts</key>
+                  <string>Scripts</string>
+                  <key>chown</key>
+                  <array>
+                     <dict>
+                        <key>path</key>
+                        <string>Applications</string>
+                        <key>user</key>
+                        <string>root</string>
+                        <key>group</key>
+                        <string>admin</string>
+                     </dict>
+                  </array>
+               </dict>
             </dict>
-        </dict>
-    </array>
-</dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>PkgSigner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>pkg_path</key>
+               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
+               <key>signing_cert</key>
+               <string>%SIGNINGCERTIFICATE%</string>
+            </dict>
+         </dict>
+      </array>
+   </dict>
 </plist>
