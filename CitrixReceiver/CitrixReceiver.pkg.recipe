@@ -171,7 +171,7 @@ exit $ERROR</string>
                   <key>pkgtype</key>
                   <string>flat</string>
                   <key>id</key>
-                  <string>corp.sap.citrixReceiver.pkg</string>
+                  <string>corp.sap.citrix.receiver.app.pkg</string>
                   <key>version</key>
                   <string>%version%</string>
                   <key>scripts</key>
