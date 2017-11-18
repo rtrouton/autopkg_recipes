@@ -7,11 +7,11 @@
         <string>corp.sap.maccoe.jss.OracleJava8JDK</string>
         <key>Input</key>
         <dict>
-            <key>CATEGORY</key>
-            <string>Apps</string>
             <key>NAME</key>
             <string>Oracle Java 8 JDK</string>
             <key>CATEGORY</key>
+            <string>Apps</string>
+            <key>POLICY_CATEGORY</key>
             <string>Testing</string>
             <key>POLICY_TEMPLATE</key>
             <string>%RECIPE_DIR%/PolicyTemplate.xml</string>
