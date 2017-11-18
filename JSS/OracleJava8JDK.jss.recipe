@@ -11,13 +11,13 @@
             <string>Apps</string>
             <key>NAME</key>
             <string>Oracle Java 8 JDK</string>
-            <key>POLICY_CATEGORY</key>
+            <key>CATEGORY</key>
             <string>Testing</string>
             <key>POLICY_TEMPLATE</key>
             <string>%RECIPE_DIR%/PolicyTemplate.xml</string>
-            <key>SELF_SERVICE_DESCRIPTION</key>
+            <key>DESCRIPTION</key>
             <string>Install the latest version of %NAME%.</string>
-            <key>SELF_SERVICE_ICON</key>
+            <key>ICON</key>
             <string>%RECIPE_DIR%/OracleJava8JDK.png</string>
         </dict>
         <key>MinimumVersion</key>
