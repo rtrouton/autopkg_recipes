@@ -22,7 +22,7 @@
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>com.github.killahquam.download.slack</string>
+      <string>corp.sap.maccoe.download.Slack</string>
       <key>Process</key>
       <array>
          <dict>
@@ -33,6 +33,15 @@
             </dict>
             <key>Processor</key>
             <string>StopProcessingIf</string>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>dmg_path</key>
+               <string>%pathname%</string>
+            </dict>
          </dict>
          <dict>
             <key>Processor</key>
@@ -50,15 +59,13 @@
          </dict>
          <dict>
             <key>Processor</key>
-            <string>Unarchiver</string>
+            <string>Copier</string>
             <key>Arguments</key>
             <dict>
-               <key>archive_path</key>
-               <string>%pathname%</string>
+               <key>source_path</key>
+               <string>%pathname%/%SOFTWARETITLE%.app</string>
                <key>destination_path</key>
-               <string>%pkgroot%/Applications/</string>
-               <key>purge_destination</key>
-               <true />
+               <string>%pkgroot%/Applications/%SOFTWARETITLE%.app</string>
             </dict>
          </dict>
          <dict>
@@ -67,7 +74,7 @@
             <key>Arguments</key>
             <dict>
                <key>input_plist_path</key>
-               <string>%pkgroot%/Applications/%NAME%.app/Contents/Info.plist</string>
+               <string>%pkgroot%/Applications/%SOFTWARETITLE%.app/Contents/Info.plist</string>
                <key>plist_version_key</key>
                <string>CFBundleShortVersionString</string>
             </dict>
