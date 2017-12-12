@@ -22,7 +22,7 @@
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>corp.sap.maccoe.download.Slack</string>
+      <string>com.github.killahquam.download.slack</string>
       <key>Process</key>
       <array>
          <dict>
