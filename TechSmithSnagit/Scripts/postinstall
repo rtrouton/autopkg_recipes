@@ -53,7 +53,7 @@ if [[ -f "$PREFS_PLIST" ]]; then
 			fi
 
 			/usr/bin/defaults write "$USER_HOME/$CONTAINER_PREFS/7TQL462TU8.com.techsmith.snagit" sendTrackerbirdData -bool NO
-			/usr/sbin/chown -R $CURRENT_USER:staff "$USER_HOME/$CONTAINER_PREFS"
+			/usr/sbin/chown -R $CURRENT_USER:staff "$USER_HOME/Library/Group Containers/7TQL462TU8.com.techsmith.snagit"
 
 			if [[ ! -d "$3/System/Library/User Template/Non_localized/$CONTAINER_PREFS" ]]; then
 				/bin/mkdir -p "$3/System/Library/User Template/Non_localized/$CONTAINER_PREFS"
