@@ -28,7 +28,7 @@
         <key>MinimumVersion</key>
         <string>1.0.0</string>
         <key>ParentRecipe</key>
-        <string>corp.sap.maccoe.pkg.MicrosoftOneNote2016</string>
+        <string>corp.sap.maccoe.pkg.microsoftonenote365</string>
         <key>Process</key>
         <array>
             <dict>
