@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Remove previous version of Fiori Launchpad from /Applications
+
+if [[ -d "$3/Applications/Fiori Launchpad.app" ]]; then
+   rm -rf "$3/Applications/Fiori Launchpad.app"
+fi
+
