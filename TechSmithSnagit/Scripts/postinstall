@@ -16,8 +16,8 @@ fi
 # install config in current user's home folder
 
 
-PREFS_PLIST="${0%/*}/com.TechSmith.Snagit2018.plist"
-CONTAINER_PREFS="/Library/Group Containers/7TQL462TU8.com.techsmith.snagit/Snagit 2018/Preferences"
+PREFS_PLIST="${0%/*}/com.TechSmith.Snagit2019.plist"
+CONTAINER_PREFS="/Library/Group Containers/7TQL462TU8.com.techsmith.snagit/Snagit 2019/Preferences"
 ERROR=0
 
 function log {
