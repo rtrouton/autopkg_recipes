@@ -35,53 +35,39 @@
             <string>StopProcessingIf</string>
          </dict>
          <dict>
-         	<key>Arguments</key>
-         	<dict>
-         		<key>destination_path</key>
-         		<string>%RECIPE_CACHE_DIR%/unpack/</string>
-         		<key>flat_pkg_path</key>
-         		<string>%pathname%/Install Code42 CrashPlan.pkg</string>
-         		<key>purge_destination</key>
-         		<string>true</string>
-         	</dict>
-         	<key>Processor</key>
-         	<string>FlatPkgUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+               <key>flat_pkg_path</key>
+               <string>%pathname%/Install Code42 CrashPlan.pkg</string>
+               <key>destination_path</key>
+               <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
          </dict>
          <dict>
-         	<key>Arguments</key>
-         	<dict>
-         	    <key>pkgroot</key>
-         	    <string>%RECIPE_CACHE_DIR%/payload/Applications</string>
-         	    <key>pkgdirs</key>
-         	    <dict>
-         			<key>Applications</key>
-         			<string>0755</string>
-         		</dict>
-         	</dict>
-         	<key>Processor</key>
-         	<string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+               <key>pkg_payload_path</key>
+               <string>%RECIPE_CACHE_DIR%/unpack/crashplan.pkg/Payload</string>
+               <key>destination_path</key>
+               <string>%RECIPE_CACHE_DIR%/payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
          </dict>
          <dict>
-         	<key>Arguments</key>
-         	<dict>
-         		<key>destination_path</key>
-         		<string>%RECIPE_CACHE_DIR%/payload/Applications</string>
-         		<key>pkg_payload_path</key>
-         		<string>%RECIPE_CACHE_DIR%/unpack/crashplan.pkg/Payload</string>
-         		<key>purge_destination</key>
-         		<string>true</string>
-         	</dict>
-         	<key>Processor</key>
-         	<string>PkgPayloadUnpacker</string>
-         </dict>
-         <dict>
-         	<key>Arguments</key>
-         	<dict>
-         		<key>input_plist_path</key>
-         		<string>%RECIPE_CACHE_DIR%/payload/Applications/CrashPlan.app/Contents/Info.plist</string>
-         	</dict>
-         	<key>Processor</key>
-         	<string>Versioner</string>
+            <key>Comment</key>
+            <string>Get version from the pkg</string>
+            <key>Processor</key>
+            <string>Versioner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>input_plist_path</key>
+               <string>%RECIPE_CACHE_DIR%/payload/CrashPlan.app/Contents/Info.plist</string>
+               <key>plist_version_key</key>
+               <string>CFBundleShortVersionString</string>
+            </dict>
          </dict>
          <dict>
             <key>Processor</key>
