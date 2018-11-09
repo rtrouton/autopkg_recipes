@@ -37,21 +37,10 @@
          <dict>
          	<key>Arguments</key>
          	<dict>
-         <key>destination_path</key>
-         <string>%RECIPE_CACHE_DIR%/CrashPlan.pkg</string>
-         <key>source_path</key>
-         <string>%pathname%/Install Code42 CrashPlan.pkg</string>
-         	</dict>
-         	<key>Processor</key>
-         	<string>Copier</string>
-         </dict>
-         <dict>
-         	<key>Arguments</key>
-         	<dict>
          		<key>destination_path</key>
          		<string>%RECIPE_CACHE_DIR%/unpack/</string>
          		<key>flat_pkg_path</key>
-         		<string>%destination_path%</string>
+         		<string>%pathname%/Install Code42 CrashPlan.pkg</string>
          		<key>purge_destination</key>
          		<string>true</string>
          	</dict>
@@ -252,7 +241,6 @@ exit $ERROR</string>
                   <string>%RECIPE_CACHE_DIR%/payload</string>
                   <string>%RECIPE_CACHE_DIR%/unpack</string>
                   <string>%RECIPE_CACHE_DIR%/Scripts</string>
-                  <string>%RECIPE_CACHE_DIR%/CrashPlan.pkg</string>
                </array>
             </dict>
             <key>Processor</key>
