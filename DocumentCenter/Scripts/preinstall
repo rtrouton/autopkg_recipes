@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# redirect all output to /dev/null
+exec >/dev/null 2>&1
+
+# kill running doc center
+/usr/bin/killall "Doc Center"
+
+# remove the application
+/bin/rm -rf "$3/Applications/Doc Center.app"
+
+exit 0
