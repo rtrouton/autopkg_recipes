@@ -17,7 +17,7 @@
             <key>POLICY_TEMPLATE</key>
             <string>%RECIPE_DIR%/PolicyTemplate.xml</string>
             <key>ICON</key>
-            <string>%RECIPE_DIR%/MicrosoftOutlook2016.png</string>
+            <string>%RECIPE_DIR%/MicrosoftOutlook365.png</string>
             <key>GROUP_TEMPLATE</key>
             <string>%RECIPE_DIR%/SmartGroupTemplate.xml</string>
             <key>GROUP_NAME</key>

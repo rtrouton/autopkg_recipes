@@ -23,7 +23,7 @@
 		<key>SELF_SERVICE_DESCRIPTION</key>
 		<string>Get to your files from anywhere, on any device, with Microsoft OneDrive. Share and work together with anyone in your work and life. With OneDrive for Business, you also get storage for your work files so you can share and collaborate on them with other people at your work or school/university. The OneDrive app for Mac makes it easy to work with your OneDrive files on your Mac.</string>
 		<key>SELF_SERVICE_ICON</key>
-		<string>%RECIPE_DIR%/MicrosoftOneDrive.png</string>
+		<string>%RECIPE_DIR%/MicrosoftOneDrive365.png</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>

@@ -23,7 +23,7 @@
 		<key>SELF_SERVICE_DESCRIPTION</key>
 		<string>Microsoft Teams is the new chat-centered workspace in Office 365. Keep all your content, tools, people, and conversations together in one place.</string>
 		<key>SELF_SERVICE_ICON</key>
-		<string>%RECIPE_DIR%/MicrosoftTeams.png</string>
+		<string>%RECIPE_DIR%/MicrosoftTeams365.png</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>

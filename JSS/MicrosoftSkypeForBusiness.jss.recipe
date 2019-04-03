@@ -23,7 +23,7 @@
 		<key>SELF_SERVICE_DESCRIPTION</key>
 		<string>Skype for Business is an instant-messaging client used with Skype for Business Server or with Skype for Business Online (available with Microsoft Office 365)</string>
 		<key>SELF_SERVICE_ICON</key>
-		<string>%RECIPE_DIR%/MicrosoftSkypeForBusiness.png</string>
+		<string>%RECIPE_DIR%/MicrosoftSkypeForBusiness365.png</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
