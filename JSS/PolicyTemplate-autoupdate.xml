@@ -1,0 +1,49 @@
+<policy>
+    <general>
+        <name>Auto Update %PROD_NAME%</name>
+        <enabled>true</enabled>
+        <frequency>Ongoing</frequency>
+        <category>
+            <name>%POLICY_CATEGORY%</name>
+        </category>
+		<trigger_startup>true</trigger_startup>
+        <trigger_other>autoupdate-%PROD_NAME%</trigger_other>
+    </general>
+    <scope>
+        <scope>
+          <all_computers>true</all_computers>
+          <computers/>
+          <computer_groups/>
+          <buildings/>
+          <departments/>
+          <limit_to_users>
+            <user_groups/>
+          </limit_to_users>
+          <limitations>
+            <users/>
+            <user_groups/>
+            <network_segments/>
+            <ibeacons/>
+          </limitations>
+          <exclusions>
+            <computers/>
+            <computer_groups/>
+            <buildings/>
+            <departments/>
+            <users/>
+            <user_groups/>
+            <network_segments/>
+            <ibeacons/>
+          </exclusions>
+        </scope>
+    </scope>
+    <package_configuration>
+        <!--Package added by JSSImporter-->
+    </package_configuration>
+    <scripts>
+        <!--Scripts added by JSSImporter-->
+    </scripts>
+    <maintenance>
+        <recon>false</recon>
+    </maintenance>
+</policy>
