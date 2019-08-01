@@ -18,6 +18,6 @@
         <!--Scripts added by JSSImporter-->
     </scripts>
     <maintenance>
-        <recon>false</recon>
+        <recon>true</recon>
     </maintenance>
 </policy>
