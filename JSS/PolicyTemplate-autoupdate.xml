@@ -9,9 +9,7 @@
         <trigger_other>autoupdate-%PROD_NAME%</trigger_other>
     </general>
     <scope>
-        <scope>
-          <all_computers>true</all_computers>
-        </scope>
+        <all_computers>true</all_computers>
     </scope>
     <package_configuration>
         <!--Package added by JSSImporter-->
