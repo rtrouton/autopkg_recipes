@@ -11,29 +11,6 @@
     <scope>
         <scope>
           <all_computers>true</all_computers>
-          <computers/>
-          <computer_groups/>
-          <buildings/>
-          <departments/>
-          <limit_to_users>
-            <user_groups/>
-          </limit_to_users>
-          <limitations>
-            <users/>
-            <user_groups/>
-            <network_segments/>
-            <ibeacons/>
-          </limitations>
-          <exclusions>
-            <computers/>
-            <computer_groups/>
-            <buildings/>
-            <departments/>
-            <users/>
-            <user_groups/>
-            <network_segments/>
-            <ibeacons/>
-          </exclusions>
         </scope>
     </scope>
     <package_configuration>
