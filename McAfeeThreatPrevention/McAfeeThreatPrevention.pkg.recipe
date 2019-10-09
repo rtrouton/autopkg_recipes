@@ -5,22 +5,20 @@
       <key>Description</key>
       <string>Downloads the current release version of the McAfee Agent installer package and renames the installer package to match our naming standard.</string>
       <key>Identifier</key>
-      <string>corp.sap.maccoe.pkg.mcafeeagent</string>
+      <string>corp.sap.maccoe.pkg.mcafeethreatprevention</string>
       <key>Input</key>
       <dict>
          <key>NAME</key>
-         <string>McAfee Agent</string>
-         <key>PACKAGER</key>
-         <string>SAPCorp</string>
+         <string>McAfee Threat Prevention</string>
          <key>VENDOR</key>
          <string>McAfee</string>
          <key>SOFTWARETITLE</key>
-         <string>Agent</string>
+         <string>ThreatPrevention</string>
       </dict>
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>corp.sap.maccoe.download.mcafeeagent</string>
+      <string>corp.sap.maccoe.download.mcafeethreatprevention</string>
       <key>Process</key>
       <array>
          <dict>
@@ -29,7 +27,7 @@
             <key>Arguments</key>
             <dict>
                <key>input_plist_path</key>
-               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.mcafeeagent.identifier.plist</string>
+               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.mcafeethreatprevention.identifier.plist</string>
                <key>plist_version_key</key>
                <string>CFBundleShortVersionString</string>
             </dict>

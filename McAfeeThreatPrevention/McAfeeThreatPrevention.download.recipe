@@ -3,25 +3,23 @@
 <plist version="1.0">
    <dict>
       <key>Description</key>
-      <string>Download recipe for McAfee Agent.</string>
+      <string>Download recipe for McAfee Threat Prevention.</string>
       <key>Identifier</key>
-      <string>corp.sap.maccoe.download.mcafeeagent</string>
+      <string>corp.sap.maccoe.download.mcafeethreatprevention</string>
       <key>Input</key>
       <dict>
          <key>NAME</key>
-         <string>McAfee Agent</string>
-         <key>PACKAGER</key>
-         <string>SAPCorp</string>
+         <string>McAfee Threat Prevention</string>
          <key>VENDOR</key>
          <string>McAfee</string>
          <key>SOFTWARETITLE</key>
-         <string>Agent</string>
+         <string>ThreatPrevention</string>
          <key>DOWNLOAD_URL</key>
-         <string>Put_McAfeeAgent_download_URL_into_AutoPkg_recipe_override</string>
+         <string>Put_McAfeeThreatPrevention_download_URL_into_AutoPkg_recipe_override</string>
          <key>DOWNLOAD_USERAGENT</key>
-         <string>Put_McAfeeAgent_download_useragent_into_AutoPkg_recipe_override</string>
+         <string>Put_McAfeeThreatPrevention_download_useragent_into_AutoPkg_recipe_override</string>
          <key>DOWNLOAD_REFERER</key>
-         <string>Put_McAfeeAgent_download_referer_into_AutoPkg_recipe_override</string>
+         <string>Put_McAfeeThreatPrevention_download_referer_into_AutoPkg_recipe_override</string>
       </dict>
       <key>MinimumVersion</key>
       <string>1.0.0</string>
@@ -31,7 +29,7 @@
             <key>Arguments</key>
             <dict>
                <key>predicate</key>
-               <string>DOWNLOAD_URL == "Put_McAfeeAgent_download_URL_into_AutoPkg_recipe_override"</string>
+               <string>DOWNLOAD_URL == "Put_McAfeeThreatPrevention_download_URL_into_AutoPkg_recipe_override"</string>
             </dict>
             <key>Processor</key>
             <string>StopProcessingIf</string>
@@ -40,7 +38,7 @@
             <key>Arguments</key>
             <dict>
                <key>predicate</key>
-               <string>DOWNLOAD_USERAGENT == "Put_McAfeeAgent_download_useragent_into_AutoPkg_recipe_override"</string>
+               <string>DOWNLOAD_USERAGENT == "Put_McAfeeThreatPrevention_download_useragent_into_AutoPkg_recipe_override"</string>
             </dict>
             <key>Processor</key>
             <string>StopProcessingIf</string>
@@ -49,7 +47,7 @@
             <key>Arguments</key>
             <dict>
                <key>predicate</key>
-               <string>DOWNLOAD_REFERER == "Put_McAfeeAgent_download_referer_into_AutoPkg_recipe_override"</string>
+               <string>DOWNLOAD_REFERER == "Put_McAfeeThreatPrevention_download_referer_into_AutoPkg_recipe_override"</string>
             </dict>
             <key>Processor</key>
             <string>StopProcessingIf</string>
@@ -89,7 +87,7 @@
             <key>Arguments</key>
             <dict>
                <key>input_plist_path</key>
-               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.mcafeeagent.identifier.plist</string>
+               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.mcafeethreatprevention.identifier.plist</string>
                <key>plist_version_key</key>
                <string>CFBundleShortVersionString</string>
             </dict>
