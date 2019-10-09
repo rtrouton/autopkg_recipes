@@ -67,7 +67,7 @@
                   <string>%DOWNLOAD_USERAGENT%</string>
                   <key>referer</key>
                   <string>%DOWNLOAD_REFERER%</string>
-                </dict>
+               </dict>
             </dict>
          </dict>
          <dict>
