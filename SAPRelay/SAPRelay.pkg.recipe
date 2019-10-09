@@ -3,7 +3,7 @@
 <plist version="1.0">
    <dict>
       <key>Description</key>
-      <string>Downloads SAP Relay disk image and builds a package.</string>
+      <string>Downloads SAP Relay disk image and builds an installer package.</string>
       <key>Identifier</key>
       <string>corp.sap.maccoe.pkg.saprelay</string>
       <key>Input</key>
