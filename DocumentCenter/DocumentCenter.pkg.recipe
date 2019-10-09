@@ -5,7 +5,7 @@
       <key>Description</key>
       <string>Downloads Document Center disk image and builds a package.</string>
       <key>Identifier</key>
-      <string>corp.sap.maccoe.pkg.saprelay</string>
+      <string>corp.sap.maccoe.pkg.documentcenter</string>
       <key>Input</key>
       <dict>
 		<key>NAME</key>

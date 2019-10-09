@@ -17,7 +17,7 @@
          <key>APPNAME</key>
          <string>Doc Center</string>
          <key>DOWNLOAD_URL</key>
-         <string>Put_Relay_download_URL_into_AutoPkg_recipe_override</string>
+         <string>Put_DocumentCenter_download_URL_into_AutoPkg_recipe_override</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
@@ -27,7 +27,7 @@
 		   <key>Arguments</key>
 		   <dict>
 		      <key>predicate</key>
-		      <string>DOWNLOAD_URL == "Put_Relay_download_URL_into_AutoPkg_recipe_override"</string>
+		      <string>DOWNLOAD_URL == "Put_DocumentCenter_download_URL_into_AutoPkg_recipe_override"</string>
 		   </dict>
 		   <key>Processor</key>
 		   <string>StopProcessingIf</string>
