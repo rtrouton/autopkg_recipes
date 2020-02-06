@@ -3,7 +3,7 @@
 <plist version="1.0">
    <dict>
       <key>Description</key>
-      <string>Download recipe for the SAP Brand Identify Templates installer for Microsoft PowerPoint and Word for Mac.</string>
+      <string>Download recipe for the SAP Brand Identity Templates installer for Microsoft PowerPoint and Word for Mac.</string>
       <key>Identifier</key>
       <string>corp.sap.maccoe.download.sapbrandidentitytemplates</string>
       <key>Input</key>
@@ -14,8 +14,12 @@
          <string>SAPCorp</string>
          <key>VENDOR</key>
          <string>SAP</string>
-         <key>SOFTWARETITLE</key>
-         <string>SAPBrandIdentity</string>
+         <key>SOFTWARETITLE1</key>
+         <string>Brand</string>
+         <key>SOFTWARETITLE2</key>
+         <string>Identity</string>
+         <key>SOFTWARETITLE3</key>
+         <string>Templates</string>
          <key>DOWNLOAD_URL</key>
          <string>Put_SAPBrandIdentityTemplates_download_URL_into_AutoPkg_recipe_override</string>
          <key>DOWNLOAD_USERAGENT</key>
