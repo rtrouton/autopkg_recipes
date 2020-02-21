@@ -3,22 +3,28 @@
 <plist version="1.0">
    <dict>
       <key>Description</key>
-      <string>Downloads the current release version of the Cisco Umbrella Roaming Client installer package and renames the installer package to match our naming standard.</string>
+      <string>Downloads the current release version of the  F5 Networks BIG-IP Edge Client installer package and renames the installer package to match our naming standard.</string>
       <key>Identifier</key>
-      <string>corp.sap.maccoe.pkg.ciscoumbrella</string>
+      <string>corp.sap.maccoe.pkg.f5vpn</string>
       <key>Input</key>
       <dict>
          <key>NAME</key>
-         <string>Cisco Umbrella</string>
+         <string>F5 Networks BIG-IP Edge Client</string>
+         <key>PACKAGER</key>
+         <string>SAPCorp</string>
          <key>VENDOR</key>
-         <string>Cisco</string>
-         <key>SOFTWARETITLE</key>
-         <string>RoamingClient</string>
+         <string>F5Networks</string>
+         <key>SOFTWARETITLE1</key>
+         <string>BIG-IP</string>
+         <key>SOFTWARETITLE2</key>
+         <string>Edge</string>
+         <key>SOFTWARETITLE3</key>
+         <string>Client</string>
       </dict>
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>corp.sap.maccoe.download.ciscoumbrella</string>
+      <string>corp.sap.maccoe.download.f5vpn</string>
       <key>Process</key>
       <array>
          <dict>
@@ -27,7 +33,7 @@
             <key>Arguments</key>
             <dict>
                <key>input_plist_path</key>
-               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.ciscoumbrella.identifier.plist</string>
+               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.f5vpn.identifier.plist</string>
                <key>plist_version_key</key>
                <string>CFBundleShortVersionString</string>
             </dict>
@@ -49,7 +55,7 @@
                <key>source_pkg</key>
                <string>%found_filename%</string>
                <key>pkg_path</key>
-               <string>%RECIPE_CACHE_DIR%/%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
+               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%SOFTWARETITLE1%_%SOFTWARETITLE2%_%SOFTWARETITLE3%_%version%.pkg</string>
             </dict>
          </dict>
          <dict>
