@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads Snagit disk image, builds a package, and imports into JSS.</string>
+	<string>Downloads Atom zip file, builds a package, and imports into JSS.</string>
 	<key>Identifier</key>
 	<string>corp.sap.maccoe.jss.Atom-AutoUpdate</string>
 	<key>Input</key>
