@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Remove previous version of Atom from /Applications
+
+if [ -d "$3/Applications/Atom.app" ]; then
+   rm -rf "$3/Applications/Atom.app"
+fi
+
+exit 0
