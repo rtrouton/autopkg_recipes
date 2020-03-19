@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Remove previous version of Visual Studio Code from /Applications
+
+if [ -d "$3/Applications/Visual Studio Code.app" ]; then
+   rm -rf "$3/Applications/Visual Studio Code.app"
+fi
+
+exit 0
