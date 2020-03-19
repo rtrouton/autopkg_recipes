@@ -24,7 +24,7 @@
          <string>Put_Signing_Certificate_into_AutoPkg_recipe_override</string>
       </dict>
       <key>ParentRecipe</key>
-      <string>Parent: com.github.killahquam.download.visualstudiocode</string>
+      <string>com.github.killahquam.download.visualstudiocode</string>
       <key>Process</key>
       <array>
          <dict>
