@@ -88,7 +88,7 @@
                   <key>version</key>
                   <string>%version%</string>
                   <key>id</key>
-                  <string>corp.sap.atom.io.app.pkg</string>
+                  <string>corp.sap.microsoft.visualstudiocode.app.pkg</string>
                   <key>options</key>
                   <string>purge_ds_store</string>
                   <key>scripts</key>
