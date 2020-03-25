@@ -28,7 +28,7 @@
         <key>MinimumVersion</key>
         <string>1.0.0</string>
         <key>ParentRecipe</key>
-        <string>corp.sap.maccoe.pkg.GoogleChrome</string>
+        <string>corp.sap.maccoe.pkg.googlechromeenterprise</string>
         <key>Process</key>
         <array>
             <dict>
