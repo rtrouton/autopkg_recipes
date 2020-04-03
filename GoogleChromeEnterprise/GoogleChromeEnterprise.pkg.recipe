@@ -18,7 +18,7 @@
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>com.github.rtrouton.download.googlechromeenterprise</string>
+      <string>com.github.autopkg.download.googlechromepkg</string>
       <key>Process</key>
       <array>
          <dict>
