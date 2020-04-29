@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the current release version of the Cisco Umbrella client for macOS and renames the package.</string>
     <key>Identifier</key>
-    <string>com.github.rtrouton.pkg.ciscoumbrella</string>
+    <string>corp.sap.maccoe.pkg.ciscoumbrella</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
