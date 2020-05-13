@@ -46,14 +46,39 @@
             <string>StopProcessingIf</string>
          </dict>
          <dict>
-            <key>Processor</key>
-            <string>TechSmithAddScriptKey</string>
-            <key>Arguments</key>
-            <dict>
-               <key>REG_KEY</key>
-               <string>%CAMTASIA_KEY%</string>
-            </dict>
-         </dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts/postinstall</string>
+				<key>file_mode</key>
+				<string>0755</string>
+				<key>file_content</key>
+				<string>#!/bin/bash
+
+license_key="%CAMTASIA_KEY%"
+
+if [[ -n "$license_key" ]]; then
+
+   # Create Camtasia license directory if it doesn't exist.
+
+   if [[ ! -d "$3/Users/Shared/TechSmith/Camtasia" ]]; then
+      mkdir -p "$3/Users/Shared/TechSmith/Camtasia"
+      chmod -R 755 "$3/Users/Shared/TechSmith/Camtasia"
+   fi
+   
+   # Create Camtasia license file if it doesn't exist.
+   
+   if [[ ! -f "$3/Users/Shared/TechSmith/Camtasia/LicenseKey" ]]; then
+      touch "$3/Users/Shared/TechSmith/Camtasia/LicenseKey"
+      echo "$license_key" > "$3/Users/Shared/TechSmith/Camtasia/LicenseKey"
+      chmod 755 "$3/Users/Shared/TechSmith/Camtasia/LicenseKey"
+fi
+
+exit 0</string>
+			</dict>
+		</dict>				
          <dict>
             <key>Processor</key>
             <string>AppDmgVersioner</string>
