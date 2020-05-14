@@ -17,6 +17,10 @@
     <scripts>
         <!--Scripts added by JSSImporter-->
     </scripts>
+    <reboot>
+        <no_user_logged_in>Do not restart</no_user_logged_in>
+        <user_logged_in>Do not restart</user_logged_in>
+    </reboot>
     <maintenance>
         <recon>true</recon>
     </maintenance>
