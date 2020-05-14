@@ -44,6 +44,29 @@
             </dict>
             <key>Processor</key>
             <string>StopProcessingIf</string>
+         </dict>				
+         <dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>dmg_path</key>
+               <string>%pathname%</string>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+               <key>pkgroot</key>
+               <string>%RECIPE_CACHE_DIR%/Postinstall</string>
+               <key>pkgdirs</key>
+               <dict>
+                  <key>Scripts</key>
+                  <string>0775</string>
+               </dict>
+            </dict>
          </dict>
          <dict>
 			<key>Processor</key>
@@ -51,7 +74,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>file_path</key>
-				<string>%RECIPE_CACHE_DIR%/Scripts/postinstall</string>
+				<string>%RECIPE_CACHE_DIR%/Postinstall/Scripts/postinstall</string>
 				<key>file_mode</key>
 				<string>0755</string>
 				<key>file_content</key>
@@ -63,31 +86,23 @@ if [[ -n "$license_key" ]]; then
 
    # Create Camtasia license directory if it doesn't exist.
 
-   if [[ ! -d "$3/Users/Shared/TechSmith/Camtasia" ]]; then
+     if [[ ! -d "$3/Users/Shared/TechSmith/Camtasia" ]]; then
       mkdir -p "$3/Users/Shared/TechSmith/Camtasia"
       chmod -R 755 "$3/Users/Shared/TechSmith/Camtasia"
-   fi
+     fi
    
    # Create Camtasia license file if it doesn't exist.
    
-   if [[ ! -f "$3/Users/Shared/TechSmith/Camtasia/LicenseKey" ]]; then
-      touch "$3/Users/Shared/TechSmith/Camtasia/LicenseKey"
-      echo "$license_key" > "$3/Users/Shared/TechSmith/Camtasia/LicenseKey"
-      chmod 755 "$3/Users/Shared/TechSmith/Camtasia/LicenseKey"
+     if [[ ! -f "$3/Users/Shared/TechSmith/Camtasia/LicenseKey" ]]; then
+      printf "$license_key" > "$3/Users/Shared/TechSmith/Camtasia/LicenseKey"
+      chmod 755 "$3/Users/Shared/TechSmith/Camtasia/Camtasia/LicenseKey"
+      chmod 777 "$3/Users/Shared/TechSmith/Camtasia"
+     fi
 fi
 
 exit 0</string>
 			</dict>
-		</dict>				
-         <dict>
-            <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-               <key>dmg_path</key>
-               <string>%pathname%</string>
-            </dict>
-         </dict>
+		</dict>
          <dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>
@@ -129,7 +144,7 @@ exit 0</string>
                   <key>options</key>
                   <string>purge_ds_store</string>
                   <key>scripts</key>
-                  <string>Scripts</string>
+                  <string>%RECIPE_CACHE_DIR%/Postinstall/Scripts</string>
                   <key>chown</key>
                   <array>
                      <dict>
@@ -139,6 +154,8 @@ exit 0</string>
                         <string>root</string>
                         <key>group</key>
                         <string>admin</string>
+                        <key>mode</key>
+                        <string>755</string>
                      </dict>
                   </array>
                </dict>
