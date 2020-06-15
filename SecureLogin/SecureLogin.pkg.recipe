@@ -3,24 +3,24 @@
 <plist version="1.0">
    <dict>
       <key>Description</key>
-      <string>Downloads the current release version of the SAPGUI installer package and renames the installer package to match our naming standard.</string>
+      <string>Downloads the current release version of the Secure Login installer package and renames the installer package to match our naming standard.</string>
       <key>Identifier</key>
-      <string>corp.sap.maccoe.pkg.sapgui</string>
+      <string>corp.sap.maccoe.pkg.securelogin</string>
       <key>Input</key>
       <dict>
          <key>NAME</key>
-         <string>SAP GUI</string>
+         <string>Secure Login</string>
          <key>PACKAGER</key>
          <string>SAPCorp</string>
          <key>VENDOR</key>
          <string>SAP</string>
          <key>SOFTWARETITLE</key>
-         <string>SAPGUI</string>
+         <string>SecureLogin</string>
       </dict>
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>corp.sap.maccoe.download.sapgui</string>
+      <string>corp.sap.maccoe.download.securelogin</string>
       <key>Process</key>
       <array>
          <dict>
@@ -29,7 +29,7 @@
             <key>Arguments</key>
             <dict>
                <key>input_plist_path</key>
-               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.sapgui.identifier.plist</string>
+               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.securelogin.identifier.plist</string>
                <key>plist_version_key</key>
                <string>CFBundleShortVersionString</string>
             </dict>
