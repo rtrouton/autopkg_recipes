@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+   <dict>
+      <key>Description</key>
+      <string>Download recipe for Secure Login for Mac.</string>
+      <key>Identifier</key>
+      <string>corp.sap.maccoe.download.securelogin</string>
+      <key>Input</key>
+      <dict>
+         <key>NAME</key>
+         <string>Secure Login</string>
+         <key>PACKAGER</key>
+         <string>SAPCorp</string>
+         <key>VENDOR</key>
+         <string>SAP</string>
+         <key>SOFTWARETITLE</key>
+         <string>SecureLogin</string>
+         <key>DOWNLOAD_URL</key>
+         <string>Put_SecureLogin_download_URL_into_AutoPkg_recipe_override</string>
+         <key>DOWNLOAD_USERAGENT</key>
+         <string>Put_SecureLogin_download_useragent_into_AutoPkg_recipe_override</string>
+         <key>DOWNLOAD_REFERER</key>
+         <string>Put_SecureLogin_download_referer_into_AutoPkg_recipe_override</string>
+      </dict>
+      <key>MinimumVersion</key>
+      <string>1.0.0</string>
+      <key>Process</key>
+      <array>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>predicate</key>
+               <string>DOWNLOAD_URL == "Put_SecureLogin_download_URL_into_AutoPkg_recipe_override"</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+         </dict>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>predicate</key>
+               <string>DOWNLOAD_USERAGENT == "Put_SecureLogin_download_useragent_into_AutoPkg_recipe_override"</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+         </dict>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>predicate</key>
+               <string>DOWNLOAD_REFERER == "Put_SecureLogin_download_referer_into_AutoPkg_recipe_override"</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+               <key>url</key>
+               <string>%DOWNLOAD_URL%</string>
+               <key>request_headers</key>
+               <dict>
+                  <key>user-agent</key>
+                  <string>%DOWNLOAD_USERAGENT%</string>
+                  <key>referer</key>
+                  <string>%DOWNLOAD_REFERER%</string>
+               </dict>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
+            <key>Arguments</key>
+            <dict>
+               <key>archive_path</key>
+               <string>%pathname%</string>
+               <key>destination_path</key>
+               <string>%RECIPE_CACHE_DIR%/%VENDOR%</string>
+               <key>purge_destination</key>
+               <true />
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>input_plist_path</key>
+               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.securelogin.identifier.plist</string>
+               <key>plist_version_key</key>
+               <string>CFBundleShortVersionString</string>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+         </dict>
+      </array>
+   </dict>
+</plist>
