@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/local/autopkg/python
 #
 # Copyright 2010 Per Olofsson
 #
@@ -65,7 +65,7 @@ class PkgSigner(Processor):
                               unsigned_pkg_path, \
                               self.env[ "pkg_path" ] ]
 
-        print command_line_list
+        print(command_line_list)
 
         # print command_line_list
         subprocess.call( command_line_list )
