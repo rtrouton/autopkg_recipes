@@ -14,10 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import absolute_import, print_function
+
 import os
 
-from autopkglib import Processor, ProcessorError
-from autopkglib import get_pref
+from autopkglib import Processor, ProcessorError, get_pref
 
 __all__ = ["TechSmithAddScriptKey"]
 
@@ -39,11 +40,11 @@ class TechSmithAddScriptKey(Processor):
         
         key = self.env['REG_KEY']
         
-        print key
+        print(key)
         
         path = os.path.join(os.path.dirname(__file__), 'Scripts/postinstall')
         
-        print path
+        print(path)
         
         if key is not None:
             
