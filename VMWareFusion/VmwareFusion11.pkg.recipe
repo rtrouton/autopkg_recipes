@@ -62,9 +62,9 @@
              <string>DittoCopier</string>
              <key>Arguments</key>
              <dict>
-                 <key>source</key>
+                 <key>source_path</key>
                  <string>%pathname%/%app_name%</string>
-                 <key>target</key>
+                 <key>destination_path</key>
                  <string>%pkgroot%/Applications/%app_name%</string>
              </dict>
          </dict>
