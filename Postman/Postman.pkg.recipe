@@ -3,28 +3,28 @@
 <plist version="1.0">
    <dict>
       <key>Description</key>
-      <string>Downloads the latest version of Fiori Launchpad and creates an installer package.</string>
+      <string>Downloads the latest version of Postman and creates an installer package.</string>
       <key>Identifier</key>
-      <string>corp.sap.maccoe.pkg.fiorilaunchpad</string>
+      <string>corp.sap.maccoe.pkg.postman</string>
       <key>Input</key>
       <dict>
          <key>NAME</key>
-         <string>Fiori Launchpad</string>
+         <string>Postman</string>
          <key>PACKAGER</key>
          <string>SAPCorp</string>
          <key>VENDOR</key>
-         <string>SAP</string>
+         <string>Postman</string>
          <key>SOFTWARETITLE</key>
-         <string>Fiori</string>   
+         <string>Labs</string>   
          <key>SOFTWARETYPE</key>
-         <string>Launchpad</string> 
+         <string>Postman</string> 
          <key>SIGNINGCERTIFICATE</key>
          <string>Put_Signing_Certificate_into_AutoPkg_recipe_override</string>
       </dict>
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>corp.sap.maccoe.download.fiorilaunchpad</string>
+      <string>com.github.dataJAR-recipes.download.postman</string>
       <key>Process</key>
       <array>
          <dict>
@@ -42,7 +42,7 @@
             <key>Arguments</key>
             <dict>
                <key>pkgroot</key>
-               <string>%RECIPE_CACHE_DIR%/%SOFTWARETITLE%%SOFTWARETYPE%</string>
+               <string>%RECIPE_CACHE_DIR%/%SOFTWARETYPE%</string>
                <key>pkgdirs</key>
                <dict>
                   <key>Applications</key>
@@ -56,9 +56,9 @@
             <key>Arguments</key>
             <dict>
                <key>source_path</key>
-               <string>%RECIPE_CACHE_DIR%/Applications/%SOFTWARETITLE% %SOFTWARETYPE%.app</string>
+               <string>%RECIPE_CACHE_DIR%/Applications/%SOFTWARETYPE%.app</string>
                <key>destination_path</key>
-               <string>%pkgroot%/Applications/%SOFTWARETITLE% %SOFTWARETYPE%.app</string>
+               <string>%pkgroot%/Applications/%SOFTWARETYPE%.app</string>
             </dict>
          </dict>
          <dict>
@@ -67,7 +67,7 @@
             <key>Arguments</key>
             <dict>
                <key>input_plist_path</key>
-               <string>%pkgroot%/Applications/%SOFTWARETITLE% %SOFTWARETYPE%.app/Contents/Info.plist</string>
+               <string>%pkgroot%/Applications/%SOFTWARETYPE%.app/Contents/Info.plist</string>
                <key>plist_version_key</key>
                <string>CFBundleShortVersionString</string>
             </dict>
@@ -84,11 +84,9 @@
                   <key>version</key>
                   <string>%version%</string>
                   <key>id</key>
-                  <string>corp.sap.Fiori.pkg</string>
+                  <string>com.postmanlabs.mac</string>
                   <key>options</key>
                   <string>purge_ds_store</string>
-                  <key>scripts</key>
-                  <string>Scripts</string>
                   <key>chown</key>
                   <array>
                      <dict>
