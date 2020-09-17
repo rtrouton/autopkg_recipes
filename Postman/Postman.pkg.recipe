@@ -52,13 +52,15 @@
          </dict>
          <dict>
             <key>Processor</key>
-            <string>Copier</string>
+            <string>Unarchiver</string>
             <key>Arguments</key>
             <dict>
-               <key>source_path</key>
-               <string>%RECIPE_CACHE_DIR%/Applications/%SOFTWARETYPE%.app</string>
+               <key>archive_path</key>
+               <string>%pathname%</string>
                <key>destination_path</key>
-               <string>%pkgroot%/Applications/%SOFTWARETYPE%.app</string>
+               <string>%pkgroot%/Applications</string>
+               <key>purge_destination</key>
+               <true />
             </dict>
          </dict>
          <dict>
