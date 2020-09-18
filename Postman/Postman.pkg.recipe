@@ -80,7 +80,7 @@
             <key>Arguments</key>
             <dict>
                <key>pkgname</key>
-               <string>%PACKAGER%_%SOFTWARETITLE%_%SOFTWARETYPE%_%version%</string>
+               <string>%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%SOFTWARETYPE%_%version%</string>
                <key>pkg_request</key>
                <dict>
                   <key>version</key>
@@ -109,7 +109,7 @@
             <key>Arguments</key>
             <dict>
                <key>pkg_path</key>
-               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%SOFTWARETITLE%_%SOFTWARETYPE%_%version%.pkg</string>
+               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%SOFTWARETYPE%_%version%.pkg</string>
                <key>signing_cert</key>
                <string>%SIGNINGCERTIFICATE%</string>
             </dict>
