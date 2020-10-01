@@ -18,7 +18,7 @@
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>com.github.smithjw.download.ZoomIT</string>
+      <string>corp.sap.maccoe.download.ZoomIT</string>
       <key>Process</key>
       <array>
          <dict>
