@@ -40,11 +40,11 @@ class TechSmithAddScriptKey(Processor):
         
         key = self.env['REG_KEY']
         
-        print(key)
+        # print(key)
         
         path = os.path.join(os.path.dirname(__file__), 'Scripts/postinstall')
         
-        print(path)
+        # print(path)
         
         if key is not None:
             

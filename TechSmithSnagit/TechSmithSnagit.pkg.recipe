@@ -24,7 +24,7 @@
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>com.github.autopkg.kernsb.download.TechSmithSnagit</string>
+      <string>corp.sap.maccoe.download.TechSmithSnagit</string>
       <key>Process</key>
       <array>
          <dict>
