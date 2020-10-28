@@ -5,19 +5,17 @@
 regkey=""
 
 if [ -n "$regkey" ]; then
-	[[ ! -d /Users/Shared/TechSmith/Snagit ]] && /bin/mkdir -p /Users/Shared/TechSmith/Snagit
-	/usr/bin/defaults write /Users/Shared/TechSmith/Snagit/SnagitRegistrationKey RegKey -data "$regkey"
-	/usr/bin/plutil -convert xml1 /Users/Shared/TechSmith/Snagit/SnagitRegistrationKey.plist
-	/bin/mv /Users/Shared/TechSmith/Snagit/SnagitRegistrationKey.plist /Users/Shared/TechSmith/Snagit/SnagitRegistrationKey
-	/bin/chmod -R 777 /Users/Shared/TechSmith
-	/bin/chmod a+x /Users/Shared/TechSmith/Snagit/SnagitRegistrationKey
+  [[ ! -d "/Users/Shared/TechSmith/Snagit" ]] && /bin/mkdir -p "/Users/Shared/TechSmith/Snagit"
+  /bin/echo "$regkey" > "/Users/Shared/TechSmith/Snagit/LicenseKey"
+  /bin/chmod -R 777 "/Users/Shared/Snagit"
+  /bin/chmod a+x "/Users/Shared/TechSmith/Snagit/LicenseKey"
 fi
 
 # install config in current user's home folder
 
 
-PREFS_PLIST="${0%/*}/com.TechSmith.Snagit2020.plist"
-CONTAINER_PREFS="/Library/Group Containers/7TQL462TU8.com.techsmith.snagit/Snagit 2020/Preferences"
+PREFS_PLIST="${0%/*}/com.TechSmith.Snagit2021.plist"
+CONTAINER_PREFS="/Library/Group Containers/7TQL462TU8.com.techsmith.snagit/Snagit 2021/Preferences"
 ERROR=0
 
 function log {
