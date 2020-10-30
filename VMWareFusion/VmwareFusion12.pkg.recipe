@@ -22,7 +22,7 @@
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>com.github.dataJAR-recipes.download.VMware Fusion 12</string>
+      <string>corp.sap.maccoe.download.VMwareFusion12</string>
       <key>Process</key>
       <array>
          <dict>
