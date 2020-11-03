@@ -86,6 +86,11 @@
             <dict>
                <key>file_content</key>
                <string>#!/bin/bash
+
+# Clears quarantine bits from certain files
+
+xattr -rd com.apple.quarantine /Applications/VMware\ Fusion.app/Contents/Library/LaunchServices/*Helper
+
 #
 # Pinched with &lt;3 from: https://github.com/autopkg/justinrummel-recipes/blob/42bc13881fe373f771cefec20a53d7844172019f/VMware%20Fusion/VMwareFusion.pkg.munki.recipe
 #
