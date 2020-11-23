@@ -3,7 +3,7 @@
 <plist version="1.0">
    <dict>
       <key>Description</key>
-      <string>Downloads the latest version of Microsoft's Excel for Office 365 installer package and renames the package.</string>
+      <string>Downloads the latest version of Jabra's JabraDirect Setup installer package and renames the package.</string>
       <key>Identifier</key>
       <string>corp.sap.maccoe.pkg.jabradirect</string>
       <key>Input</key>
