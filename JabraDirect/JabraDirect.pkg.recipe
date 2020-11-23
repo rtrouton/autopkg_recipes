@@ -51,7 +51,7 @@
             <key>Arguments</key>
             <dict>
                <key>pattern</key>
-               <string>%RECIPE_CACHE_DIR%/downloads/unpack/*Jabra*.pkg</string>
+               <string>%RECIPE_CACHE_DIR%/downloads/unpack/*JabraDirect*.pkg</string>
             </dict>
             <key>Processor</key>
             <string>FileFinder</string>
