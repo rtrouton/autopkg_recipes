@@ -3,24 +3,26 @@
 <plist version="1.0">
    <dict>
       <key>Description</key>
-      <string>Downloads the current release version of the SAPGUI installer package and renames the installer package to match our naming standard.</string>
+      <string>Downloads the current release version of the Forescout Secure Connector installer package and renames the installer package to match our naming standard.</string>
       <key>Identifier</key>
-      <string>corp.sap.maccoe.pkg.sapgui</string>
+      <string>corp.sap.maccoe.pkg.forescoutsecureconnector</string>
       <key>Input</key>
       <dict>
          <key>NAME</key>
-         <string>SAP GUI</string>
+         <string>Forescout Secure Connector</string>
          <key>PACKAGER</key>
          <string>SAPCorp</string>
          <key>VENDOR</key>
-         <string>SAP</string>
-         <key>SOFTWARETITLE</key>
-         <string>SAPGUI</string>
+         <string>Forescout</string>
+         <key>SOFTWARETITLE1</key>
+         <string>Secure</string>
+         <key>SOFTWARETITLE2</key>
+         <string>Connector</string>
       </dict>
       <key>MinimumVersion</key>
       <string>1.0.0</string>
       <key>ParentRecipe</key>
-      <string>corp.sap.maccoe.download.sapgui</string>
+      <string>corp.sap.maccoe.download.forescoutsecureconnector</string>
       <key>Process</key>
       <array>
          <dict>
@@ -29,7 +31,7 @@
             <key>Arguments</key>
             <dict>
                <key>input_plist_path</key>
-               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.sapgui.identifier.plist</string>
+               <string>%RECIPE_CACHE_DIR%/%VENDOR%/com.forescoutsecureconnector.identifier.plist</string>
                <key>plist_version_key</key>
                <string>CFBundleShortVersionString</string>
             </dict>
@@ -51,7 +53,7 @@
                <key>source_pkg</key>
                <string>%found_filename%</string>
                <key>pkg_path</key>
-               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
+               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%SOFTWARETITLE1%__%SOFTWARETITLE2%_%version%.pkg</string>
             </dict>
          </dict>
          <dict>
