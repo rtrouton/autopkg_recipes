@@ -10,6 +10,8 @@
 	<dict>
 		<key>NAME</key>
 		<string>TechSmithSnagit</string>
+		<key>DOWNLOAD_URL</key>
+		<string>https://download.techsmith.com/snagitmac/releases/Snagit.dmg</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.5</string>
@@ -18,19 +20,10 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
-				<key>product_name</key>
-				<string>snagit</string>
-			</dict>
-			<key>Processor</key>
-			<string>TechSmithURLProvider</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
 				<key>filename</key>
 				<string>%NAME%.dmg</string>
 				<key>url</key>
-				<string>%url%</string>
+				<string>%DOWNLOAD_URL%</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>

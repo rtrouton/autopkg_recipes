@@ -47,21 +47,149 @@
          </dict>
          <dict>
             <key>Processor</key>
-            <string>TechSmithAddScriptKey</string>
-            <key>Arguments</key>
-            <dict>
-               <key>REG_KEY</key>
-               <string>%SNAGIT_KEY%</string>
-            </dict>
-         </dict>
-         <dict>
-            <key>Processor</key>
             <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
                <key>dmg_path</key>
                <string>%pathname%</string>
             </dict>
+         </dict>
+		<dict>
+			<key>Processor</key>
+			<string>PkgRootCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pkgroot</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts</string>
+				<key>pkgdirs</key>
+				<dict/>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts/postinstall</string>
+				<key>file_mode</key>
+				<string>0755</string>
+				<key>file_content</key>
+				<string>#!/bin/bash
+
+# Install registration key
+
+regkey=&quot;%SNAGIT_KEY%&quot;
+
+if [ -n &quot;$regkey&quot; ]; then
+  [[ ! -d &quot;/Users/Shared/TechSmith/Snagit&quot; ]] &amp;&amp; /bin/mkdir -p &quot;/Users/Shared/TechSmith/Snagit&quot;
+  /bin/echo &quot;$regkey&quot; &gt; &quot;/Users/Shared/TechSmith/Snagit/LicenseKey&quot;
+  /bin/chmod -R 777 &quot;/Users/Shared/Snagit&quot;
+  /bin/chmod a+x &quot;/Users/Shared/TechSmith/Snagit/LicenseKey&quot;
+fi
+
+# install config in current user&apos;s home folder
+
+
+PREFS_PLIST=&quot;${0%/*}/com.TechSmith.Snagit2021.plist&quot;
+CONTAINER_PREFS=&quot;/Library/Group Containers/7TQL462TU8.com.techsmith.snagit/Snagit 2021/Preferences&quot;
+ERROR=0
+
+function log {
+	echo &quot;$1&quot;
+	/usr/bin/logger -t &quot;SAPCorp: ${0##*/}&quot; &quot;$1&quot;
+}
+
+if [[ -f &quot;$PREFS_PLIST&quot; ]]; then
+
+	# get the currently logged-in user
+	CURRENT_USER=$(/bin/ls -l /dev/console | /usr/bin/awk &apos;{ print $3 }&apos;)
+
+	if [[ -n &quot;$CURRENT_USER&quot; ]]; then
+
+		# get path to user&apos;s home directory
+		USER_HOME=$(/usr/bin/dscl . -read /Users/$CURRENT_USER NFSHomeDirectory 2&gt;/dev/null | /usr/bin/sed &apos;s/^[^\/]*//g&apos;)
+
+		if [[ -d &quot;$USER_HOME&quot; &amp;&amp; &quot;$USER_HOME&quot; != &quot;/var/empty&quot; ]]; then
+
+			# import the default preferences
+			/usr/bin/defaults import &quot;$USER_HOME/Library/Preferences/${PREFS_PLIST##*/}&quot; &quot;$PREFS_PLIST&quot;
+			/usr/sbin/chown -R $CURRENT_USER:staff &quot;$USER_HOME/Library/Preferences/${PREFS_PLIST##*/}&quot;
+			/bin/chmod -R 600 &quot;$USER_HOME/Library/Preferences/${PREFS_PLIST##*/}&quot;
+
+			# copy the default prefs to user template
+			/bin/cp -f &quot;$PREFS_PLIST&quot; &quot;$3/System/Library/User Template/Non_localized/Library/Preferences/&quot;
+			/usr/sbin/chown -R root:wheel &quot;$3/System/Library/User Template/Non_localized/Library/Preferences/${PREFS_PLIST##*/}&quot;
+			/bin/chmod -R 600 &quot;$3/System/Library/User Template/Non_localized/Library/Preferences/${PREFS_PLIST##*/}&quot;
+
+			# disable collection of usage data
+			if [[ ! -d &quot;$USER_HOME/$CONTAINER_PREFS&quot; ]]; then
+				/bin/mkdir -p &quot;$USER_HOME/$CONTAINER_PREFS&quot;
+			fi
+
+			/usr/bin/defaults write &quot;$USER_HOME/$CONTAINER_PREFS/7TQL462TU8.com.techsmith.snagit&quot; sendTrackerbirdData -bool NO
+			/usr/bin/defaults write &quot;$USER_HOME/$CONTAINER_PREFS/7TQL462TU8.com.techsmith.snagit&quot; sendCrashReports -bool NO
+			/usr/sbin/chown -R $CURRENT_USER:staff &quot;$USER_HOME/Library/Group Containers/7TQL462TU8.com.techsmith.snagit&quot;
+
+			if [[ ! -d &quot;$3/System/Library/User Template/Non_localized/$CONTAINER_PREFS&quot; ]]; then
+				/bin/mkdir -p &quot;$3/System/Library/User Template/Non_localized/$CONTAINER_PREFS&quot;
+			fi
+
+			/usr/bin/defaults write &quot;$3/System/Library/User Template/Non_localized/$CONTAINER_PREFS/7TQL462TU8.com.techsmith.snagit&quot; sendTrackerbirdData -bool NO
+			/usr/bin/defaults write &quot;$3/System/Library/User Template/Non_localized/$CONTAINER_PREFS/7TQL462TU8.com.techsmith.snagit&quot; sendCrashReports -bool NO
+
+		else
+			log &quot;ERROR! Unable to determine path to user&apos;s home folder&quot;
+			ERROR=1
+		fi
+	else
+		log &quot;ERROR! Unable to determine current user&quot;
+		ERROR=1
+	fi
+
+else
+	log &quot;ERROR! Install files not found&quot;
+	ERROR=1
+fi
+
+exit $ERROR</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts/com.TechSmith.Snagit2021.plist</string>
+				<key>file_mode</key>
+				<string>0755</string>
+				<key>file_content</key>
+				<string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+	&lt;key&gt;EffectsViewShowingPreferenceKey&lt;/key&gt;
+	&lt;false/&gt;
+	&lt;key&gt;HockeySDKAutomaticallySendCrashReports&lt;/key&gt;
+	&lt;false/&gt;
+	&lt;key&gt;HockeySDKCrashReportActivated&lt;/key&gt;
+	&lt;true/&gt;
+	&lt;key&gt;SUEnableAutomaticChecks&lt;/key&gt;
+	&lt;false/&gt;
+	&lt;key&gt;SUHasLaunchedBefore&lt;/key&gt;
+	&lt;true/&gt;
+	&lt;key&gt;iRateEventCount&lt;/key&gt;
+	&lt;integer&gt;0&lt;/integer&gt;
+	&lt;key&gt;iRateUseCount&lt;/key&gt;
+	&lt;integer&gt;0&lt;/integer&gt;
+	&lt;key&gt;messageSettingsKey&lt;/key&gt;
+	&lt;integer&gt;0&lt;/integer&gt;
+	&lt;key&gt;notificationsTurnedOn&lt;/key&gt;
+	&lt;false/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</string>
+			</dict>
          </dict>
          <dict>
             <key>Processor</key>
@@ -130,6 +258,17 @@
                <string>%SIGNINGCERTIFICATE%</string>
             </dict>
          </dict>
+		<dict>
+			<key>Processor</key>
+			<string>PathDeleter</string>
+			<key>Arguments</key>
+			<dict>
+				<key>path_list</key>
+				<array>
+					<string>%RECIPE_CACHE_DIR%/Scripts</string>
+				</array>
+			</dict>
+		</dict>
       </array>
    </dict>
 </plist>
