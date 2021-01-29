@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+   <dict>
+      <key>Description</key>
+      <string>Downloads the latest Code42 installer package and prepares it for deployment.</string>
+      <key>Identifier</key>
+      <string>corp.sap.maccoe.pkg.code42</string>
+      <key>Input</key>
+      <dict>
+         <key>NAME</key>
+         <string>Code42</string>
+         <key>PACKAGER</key>
+         <string>SAPCorp</string>
+         <key>VENDOR</key>
+         <string>Code42</string>
+         <key>SIGNINGCERTIFICATE</key>
+         <string>Put_Signing_Certificate_into_AutoPkg_recipe_override</string>
+      </dict>
+      <key>MinimumVersion</key>
+      <string>1.0.0</string>
+      <key>ParentRecipe</key>
+      <string>com.github.dataJAR-recipes.download.Code42</string>
+      <key>Process</key>
+      <array>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>predicate</key>
+               <string>SIGNINGCERTIFICATE == "Put_Signing_Certificate_into_AutoPkg_recipe_override"</string>
+            </dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+         </dict>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>flat_pkg_path</key>
+               <string>%pathname%/Install Code42.pkg</string>
+               <key>destination_path</key>
+               <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+         </dict>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>pkg_payload_path</key>
+               <string>%RECIPE_CACHE_DIR%/unpack/code42.pkg/Payload</string>
+               <key>destination_path</key>
+               <string>%RECIPE_CACHE_DIR%/payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+         </dict>
+         <dict>
+            <key>Comment</key>
+            <string>Get version from the pkg</string>
+            <key>Processor</key>
+            <string>Versioner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>input_plist_path</key>
+               <string>%RECIPE_CACHE_DIR%/payload/Code42.app/Contents/Info.plist</string>
+               <key>plist_version_key</key>
+               <string>CFBundleShortVersionString</string>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+               <key>pkgroot</key>
+               <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+               <key>pkgdirs</key>
+               <dict>
+                  <key>Scripts</key>
+                  <string>0775</string>
+               </dict>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>FileMover</string>
+            <key>Arguments</key>
+            <dict>
+               <key>source</key>
+               <string>%RECIPE_CACHE_DIR%/pkgroot/Scripts</string>
+               <key>target</key>
+               <string>%RECIPE_CACHE_DIR%/Scripts</string>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+            <key>Arguments</key>
+            <dict>
+               <key>file_path</key>
+               <string>%RECIPE_CACHE_DIR%/Scripts/postinstall</string>
+               <key>file_mode</key>
+               <string>0755</string>
+               <key>file_content</key>
+               <string>#!/bin/bash
+
+PKG="${0%/*}/Code42.pkg"
+APP_SUPPORT="$3/Library/Application Support/CrashPlan"
+ERROR=0
+
+
+function log {
+
+	ERROR_MSG="$1"
+	echo "$ERROR_MSG"
+	/usr/bin/logger "SAPCorp: $ERROR_MSG"
+}
+
+if [[ -f "$PKG" ]]; then
+
+	# get the main user of the machine
+	USER_NAME=$(/usr/bin/last -20 -t console | /usr/bin/grep -Ev "^root|^wtmp" | /usr/bin/awk '{print $1}' | /usr/bin/sort | /usr/bin/uniq -c | /usr/bin/sort -r | /usr/bin/head -1 | /usr/bin/awk '{print $2}')
+	
+	# get the current user, if we didn't get the main user
+	if [[ -z "$USER_NAME" ]]; then
+		log "Failed to get main user of the machine. Using current console user"
+		USER_NAME=$(/bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }')
+	fi
+	
+	if [[ -n "$USER_NAME" ]]; then
+	
+		if [[ "$USER_NAME" != "root" ]]; then
+	
+			# get path to user's home directory
+			USER_HOME=$(/usr/bin/dscl . -read "/Users/$USER_NAME" NFSHomeDirectory | /usr/bin/sed 's/^[^\/]*//g')		
+	
+			log "Current user is $USER_NAME with home folder path $USER_HOME"
+	
+			export CP_USER_HOME="$USER_HOME"
+			export CP_USER_NAME="$USER_NAME"
+			export CP_SILENT=true
+			export startDesktop=false
+			export JET_MESSAGES_DISABLE_GUI_ON_OSX=true
+		
+			if [[ -d "$APP_SUPPORT" ]]; then
+				/bin/chmod 755 "$APP_SUPPORT"
+			fi
+	
+			INSTALL_OUT=$(/usr/sbin/installer -pkg "$PKG" -target /)
+	
+			if [[ $? -eq 0 ]]; then
+				log "Installation successful"
+			else
+				log "ERROR! Installation failed: $INSTALL_OUT"
+				ERROR=1
+			fi
+			
+		else
+			log "ERROR! No user is currently logged in. Unable to continue"
+			ERROR=1
+		fi
+	
+	else
+		log "ERROR! Unable to determine user id"
+		ERROR=1
+	fi
+	
+else
+	log "ERROR! Missing installation package"
+	ERROR=1
+fi
+
+exit $ERROR</string>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+            <key>Arguments</key>
+            <dict>
+               <key>source_pkg</key>
+               <string>%pathname%/Install Code42.pkg</string>
+               <key>pkg_path</key>
+               <string>%RECIPE_CACHE_DIR%/Scripts/Code42.pkg</string>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+            <key>Arguments</key>
+            <dict>
+               <key>pkg_request</key>
+               <dict>
+                  <key>pkgroot</key>
+                  <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+                  <key>pkgname</key>
+                  <string>%PACKAGER%_%VENDOR%_%version%</string>
+                  <key>pkgtype</key>
+                  <string>flat</string>
+                  <key>id</key>
+                  <string>corp.sap.code42.pkg</string>
+                  <key>version</key>
+                  <string>%version%</string>
+                  <key>scripts</key>
+                  <string>Scripts</string>
+               </dict>
+            </dict>
+         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>PkgSigner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>pkg_path</key>
+               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%version%.pkg</string>
+               <key>signing_cert</key>
+               <string>%SIGNINGCERTIFICATE%</string>
+            </dict>
+         </dict>
+         <dict>
+            <key>Arguments</key>
+            <dict>
+               <key>path_list</key>
+               <array>
+                  <string>%RECIPE_CACHE_DIR%/payload</string>
+                  <string>%RECIPE_CACHE_DIR%/unpack</string>
+                  <string>%RECIPE_CACHE_DIR%/Scripts</string>
+               </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+         </dict>
+      </array>
+   </dict>
+</plist>

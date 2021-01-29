@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-import FoundationPlist
+import plistlib
 import subprocess
 import os
 
