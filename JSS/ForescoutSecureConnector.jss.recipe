@@ -12,6 +12,8 @@
             <string>Forescout Secure Connector</string>
             <key>CATEGORY</key>
             <string>Apps</string>
+            <key>PACKAGE_PRIORITY</key>
+            <string>2</string>
             <key>POLICY_CATEGORY</key>
             <string>Testing</string>
             <key>POLICY_TEMPLATE</key>
@@ -38,6 +40,8 @@
                     <string>%NAME%</string>
                     <key>category</key>
                     <string>%CATEGORY%</string>
+                    <key>package_priority</key>
+                    <string>%PACKAGE_PRIORITY%</string>
                     <key>policy_category</key>
                     <string>%POLICY_CATEGORY%</string>
                     <key>policy_template</key>
