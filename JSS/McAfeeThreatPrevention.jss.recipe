@@ -12,6 +12,8 @@
             <string>McAfee Threat Prevention</string>
             <key>CATEGORY</key>
             <string>Apps</string>
+            <key>PACKAGE_PRIORITY</key>
+            <string>4</string>
             <key>POLICY_CATEGORY</key>
             <string>Testing</string>
             <key>POLICY_TEMPLATE</key>
@@ -39,6 +41,8 @@
                     <key>category</key>
                     <string>%CATEGORY%</string>
                     <key>policy_category</key>
+                    <key>package_priority</key>
+                    <string>%PACKAGE_PRIORITY%</string>
                     <string>%POLICY_CATEGORY%</string>
                     <key>policy_template</key>
                     <string>%POLICY_TEMPLATE%</string>
