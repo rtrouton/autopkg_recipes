@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the internal package source for the Cisco AnyConnect client and imports it into your JSS.</string>
+	<key>Identifier</key>
+	<string>corp.sap.maccoe.jss.CiscoAnyConnect</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>Cisco AnyConnect Secure Mobility Client</string>
+		<key>CATEGORY</key>
+		<string>Apps</string>
+		<key>PACKAGE_PRIORITY</key>
+		<string>6</string>
+		<key>POLICY_CATEGORY</key>
+		<string>Testing</string>
+		<key>POLICY_TEMPLATE</key>
+		<string>%RECIPE_DIR%/PolicyTemplate.xml</string>
+		<key>ICON</key>
+		<string>%RECIPE_DIR%/CiscoAnyConnectSecureMobilityClient.png</string>
+		<key>DESCRIPTION</key>
+		<string>Cisco AnyConnect Secure Mobility Client empowers remote workers with frictionless, highly secure access to the enterprise network from any device, at any time, in any location while protecting the organization.</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.5.0</string>
+	<key>ParentRecipe</key>
+	<string>corp.sap.maccoe.sign.CiscoAnyConnect</string>
+        <key>Process</key>
+        <array>
+            <dict>
+                <key>Arguments</key>
+                <dict>
+                    <key>prod_name</key>
+                    <string>%NAME%</string>
+                    <key>category</key>
+                    <string>%CATEGORY%</string>
+                    <key>package_priority</key>
+                    <string>%PACKAGE_PRIORITY%</string>
+                    <key>policy_category</key>
+                    <string>%POLICY_CATEGORY%</string>
+                    <key>policy_template</key>
+                    <string>%POLICY_TEMPLATE%</string>
+                    <key>self_service_icon</key>
+                    <string>%ICON%</string>
+                    <key>self_service_description</key>
+                    <string>%DESCRIPTION%</string>
+                </dict>
+                <key>Processor</key>
+                <string>JSSImporter</string>
+            </dict>
+        </array>
+</dict>
+</plist>

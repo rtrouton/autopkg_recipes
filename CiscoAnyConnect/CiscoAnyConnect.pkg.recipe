@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Comments</key>
+	<string>Based on https://github.com/autopkg/grahampugh-recipes/blob/master/CiscoAnyConnect/CiscoAnyConnect.pkg.recipe
+
+Wraps the vendor package so that it can be run with Choice Changes XML.
+
+Requires a configuration xml profile (VPN_XML) which should be added to the RECIPE_OVERRIDE_DIR before running the recipe. An example is provided in the recipe repo folder, named example.xml.
+
+If you need more packages installing, you should make a copy of this recipe and edit the ChoicesXMLGenerator choices list. This isn't overridable. Don't forget to change the Identifier if you do this.
+</string>
+	<key>Description</key>
+	<string>Creates a Cisco AnyConnect VPN-only package.</string>
+	<key>Identifier</key>
+	<string>corp.sap.maccoe.pkg.CiscoAnyConnect</string>
+	<key>ParentRecipe</key>
+	<string>corp.sap.maccoe.download.CiscoAnyConnect</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>Cisco AnyConnect Secure Mobility Client</string>
+		<key>VPN_XML</key>
+		<string>example.xml</string>
+		<key>CONTENT_XML</key>
+		<string>Put_escaped_XML_profile_text_into_AutoPkg_recipe_override
+</string>
+		<key>UMBRELLA_ORGANIZATION_ID</key>
+		<string>Put_text_into_AutoPkg_recipe_override</string>
+		<key>UMBRELLA_FINGERPRINT</key>
+		<string>Put_text_into_AutoPkg_recipe_override</string>
+		<key>UMBRELLA_USER_ID</key>
+		<string>Put_text_into_AutoPkg_recipe_override</string>
+        <key>CHOICE_VPN</key>
+        <string>1</string>
+        <key>CHOICE_WEBSECURITY</key>
+        <string>1</string>
+        <key>CHOICE_FIREAMP</key>
+        <string>1</string>
+        <key>CHOICE_DART</key>
+        <string>1</string>
+        <key>CHOICE_POSTURE</key>
+        <string>1</string>
+        <key>CHOICE_ISEPOSTURE</key>
+        <string>1</string>
+        <key>CHOICE_NVM</key>
+        <string>1</string>
+        <key>CHOICE_UMBRELLA</key>
+        <string>1</string>
+		<key>DISABLE_VPN</key>
+		<string>false</string>
+		<key>DISABLE_CUSTOMER_EXPERIENCE_FEEDBACK</key>
+		<string>false</string>
+		<key>PACKAGER</key>
+        <string>Put_packager_into_AutoPkg_recipe_override</string>
+        <key>SOFTWARETITLE</key>
+        <string>AnyConnectSecureMobilityClient</string>
+		<key>SOFTWARETITLE1</key>
+		<string>AnyConnect</string>
+		<key>SOFTWARETITLE2</key>
+		<string>Secure</string>
+		<key>SOFTWARETITLE3</key>
+		<string>Mobility</string>
+		<key>SOFTWARETITLE4</key>
+		<string>Client</string>
+		<key>PKGID</key>
+		<string>Put_pkg_identifier_prefix_into_AutoPkg_recipe_override</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>1.0.0</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkgdirs</key>
+				<dict>
+					<key>Profiles</key>
+					<string>0755</string>
+					<key>Profiles/ampenabler</key>
+					<string>0755</string>
+					<key>Profiles/feedback</key>
+					<string>0755</string>
+					<key>Profiles/iseposture</key>
+					<string>0755</string>
+					<key>Profiles/nvm</key>
+					<string>0755</string>
+					<key>Profiles/umbrella</key>
+					<string>0755</string>
+					<key>Profiles/vpn</key>
+					<string>0755</string>
+					<key>Profiles/websecurity</key>
+					<string>0755</string>
+				</dict>
+				<key>pkgroot</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgRootCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkgdirs</key>
+				<dict>
+				</dict>
+				<key>pkgroot</key>
+				<string>%RECIPE_CACHE_DIR%/pkgroot</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgRootCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts/AnyConnect.pkg</string>
+				<key>source_pkg</key>
+				<string>%pathname%/AnyConnect.pkg</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgCopier</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>file_content</key>
+				<string>%CONTENT_XML%</string>
+				<key>file_mode</key>
+				<string>0644</string>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts/Profiles/vpn/%VPN_XML%</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>file_content</key>
+				<string>{
+  &quot;organizationId&quot; : &quot;%UMBRELLA_ORGANIZATION_ID%&quot;,
+  &quot;fingerprint&quot; : &quot;%UMBRELLA_FINGERPRINT%&quot;,
+  &quot;userId&quot; : &quot;%UMBRELLA_USER_ID%&quot;
+}
+</string>
+				<key>file_mode</key>
+				<string>0644</string>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts/Profiles/umbrella/OrgInfo.json</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>file_content</key>
+				<string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;array&gt;
+	&lt;dict&gt;
+		&lt;key&gt;attributeSetting&lt;/key&gt;
+		&lt;integer&gt;%CHOICE_VPN%&lt;/integer&gt;
+		&lt;key&gt;choiceAttribute&lt;/key&gt;
+		&lt;string&gt;selected&lt;/string&gt;
+		&lt;key&gt;choiceIdentifier&lt;/key&gt;
+		&lt;string&gt;choice_vpn&lt;/string&gt;
+	&lt;/dict&gt;
+	&lt;dict&gt;
+		&lt;key&gt;attributeSetting&lt;/key&gt;
+		&lt;integer&gt;%CHOICE_WEBSECURITY%&lt;/integer&gt;
+		&lt;key&gt;choiceAttribute&lt;/key&gt;
+		&lt;string&gt;selected&lt;/string&gt;
+		&lt;key&gt;choiceIdentifier&lt;/key&gt;
+		&lt;string&gt;choice_websecurity&lt;/string&gt;
+	&lt;/dict&gt;
+	&lt;dict&gt;
+		&lt;key&gt;attributeSetting&lt;/key&gt;
+		&lt;integer&gt;%CHOICE_FIREAMP%&lt;/integer&gt;
+		&lt;key&gt;choiceAttribute&lt;/key&gt;
+		&lt;string&gt;selected&lt;/string&gt;
+		&lt;key&gt;choiceIdentifier&lt;/key&gt;
+		&lt;string&gt;choice_fireamp&lt;/string&gt;
+	&lt;/dict&gt;
+	&lt;dict&gt;
+		&lt;key&gt;attributeSetting&lt;/key&gt;
+		&lt;integer&gt;%CHOICE_DART%&lt;/integer&gt;
+		&lt;key&gt;choiceAttribute&lt;/key&gt;
+		&lt;string&gt;selected&lt;/string&gt;
+		&lt;key&gt;choiceIdentifier&lt;/key&gt;
+		&lt;string&gt;choice_dart&lt;/string&gt;
+	&lt;/dict&gt;
+	&lt;dict&gt;
+		&lt;key&gt;attributeSetting&lt;/key&gt;
+		&lt;integer&gt;%CHOICE_POSTURE%&lt;/integer&gt;
+		&lt;key&gt;choiceAttribute&lt;/key&gt;
+		&lt;string&gt;selected&lt;/string&gt;
+		&lt;key&gt;choiceIdentifier&lt;/key&gt;
+		&lt;string&gt;choice_posture&lt;/string&gt;
+	&lt;/dict&gt;
+	&lt;dict&gt;
+		&lt;key&gt;attributeSetting&lt;/key&gt;
+		&lt;integer&gt;%CHOICE_ISEPOSTURE%&lt;/integer&gt;
+		&lt;key&gt;choiceAttribute&lt;/key&gt;
+		&lt;string&gt;selected&lt;/string&gt;
+		&lt;key&gt;choiceIdentifier&lt;/key&gt;
+		&lt;string&gt;choice_iseposture&lt;/string&gt;
+	&lt;/dict&gt;
+	&lt;dict&gt;
+		&lt;key&gt;attributeSetting&lt;/key&gt;
+		&lt;integer&gt;%CHOICE_NVM%&lt;/integer&gt;
+		&lt;key&gt;choiceAttribute&lt;/key&gt;
+		&lt;string&gt;selected&lt;/string&gt;
+		&lt;key&gt;choiceIdentifier&lt;/key&gt;
+		&lt;string&gt;choice_nvm&lt;/string&gt;
+	&lt;/dict&gt;
+	&lt;dict&gt;
+		&lt;key&gt;attributeSetting&lt;/key&gt;
+		&lt;integer&gt;%CHOICE_UMBRELLA%&lt;/integer&gt;
+		&lt;key&gt;choiceAttribute&lt;/key&gt;
+		&lt;string&gt;selected&lt;/string&gt;
+		&lt;key&gt;choiceIdentifier&lt;/key&gt;
+		&lt;string&gt;choice_umbrella&lt;/string&gt;
+	&lt;/dict&gt;
+&lt;/array&gt;
+&lt;/plist&gt;
+</string>
+				<key>file_mode</key>
+				<string>0755</string>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts/InstallerChoices.xml</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>file_content</key>
+				<string>&lt;!-- Optional AnyConnect installer settings are provided below. Configure the setting(s) as &quot;true&quot; (default &quot;false&quot; or commented out) to perform optional action(s) at install time.  --&gt;
+&lt;Transforms&gt;
+    &lt;DisableVPN&gt;%DISABLE_VPN%&lt;/DisableVPN&gt;
+    &lt;DisableCustomerExperienceFeedback&gt;%DISABLE_CUSTOMER_EXPERIENCE_FEEDBACK%&lt;/DisableCustomerExperienceFeedback&gt;
+&lt;/Transforms&gt;
+</string>
+				<key>file_mode</key>
+				<string>0755</string>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts/Profiles/ACTransforms.xml</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>file_content</key>
+				<string>#!/bin/bash
+
+# postinstall.sh, 0.1.3
+# (c) 2017-2020, SAP SE (Marc Thielemann &lt;marc.thielemann@sap.com&gt;)
+
+# latest change:
+# 2021/03/26, Jeremy Reichman &lt;jeremy.reichman@sap.com&gt;
+
+
+packagePath=&quot;${0%/*}/AnyConnect.pkg&quot;
+choicesXML=&quot;${0%/*}/InstallerChoices.xml&quot;
+exitCode=0
+
+if [[ -r &quot;$packagePath&quot; &amp;&amp; -r &quot;$choicesXML&quot; ]]; then
+
+	if ! /usr/sbin/installer -applyChoiceChangesXML &quot;$choicesXML&quot; -pkg &quot;$packagePath&quot; -target &quot;$3&quot;; then
+		/usr/bin/logger &quot;SAPCorp: ERROR! Installation of package $packagePath failed&quot;
+		exitCode=1
+	fi
+
+else
+	/usr/bin/logger &quot;SAPCorp: ERROR! Package $packagePath not found&quot;
+	exitCode=1
+fi
+
+exit $exitCode
+</string>
+				<key>file_mode</key>
+				<string>0755</string>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/Scripts/postinstall</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_request</key>
+				<dict>
+					<key>chown</key>
+					<array>
+					</array>
+					<key>id</key>
+					<string>%PKGID%.%VENDOR%%SOFTWARETITLE%</string>
+					<key>pkgname</key>
+					<string>%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%</string>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/pkgroot</string>
+					<key>pkgtype</key>
+					<string>flat</string>
+					<key>scripts</key>
+					<string>%RECIPE_CACHE_DIR%/Scripts</string>
+					<key>version</key>
+					<string>%version%</string>
+				</dict>
+			</dict>
+			<key>Processor</key>
+			<string>PkgCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>path_list</key>
+				<array>
+					<string>%RECIPE_CACHE_DIR%/%VENDOR%</string>
+					<string>%RECIPE_CACHE_DIR%/pkgroot</string>
+				</array>
+			</dict>
+			<key>Processor</key>
+			<string>PathDeleter</string>
+		</dict>
+	</array>
+</dict>
+</plist>

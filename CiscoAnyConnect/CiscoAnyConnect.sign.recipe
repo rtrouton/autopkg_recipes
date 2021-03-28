@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+   <dict>
+      <key>Description</key>
+      <string>Downloads latest Atom zip file and builds a package. The installer package includes a preinstall script that will check for an existing Atom.app in /Applications and remove it if found. It also contains a postinstall script which configures automatic Chrome updates for all users.</string>
+      <key>Identifier</key>
+      <string>corp.sap.maccoe.sign.CiscoAnyConnect</string>
+      <key>Input</key>
+      <dict>
+         <key>SIGNINGCERTIFICATE</key>
+         <string>Put_Signing_Certificate_into_AutoPkg_recipe_override</string>
+      </dict>
+      <key>ParentRecipe</key>
+      <string>corp.sap.maccoe.pkg.CiscoAnyConnect</string>
+      <key>Process</key>
+      <array>
+         <dict>
+            <key>Processor</key>
+            <string>corp.sap.autopkg.SharedProcessors/PkgSigner</string>
+            <key>Arguments</key>
+            <dict>
+               <key>pkg_path</key>
+               <string>%RECIPE_CACHE_DIR%/%PACKAGER%_%VENDOR%_%SOFTWARETITLE%_%version%.pkg</string>
+               <key>signing_cert</key>
+               <string>%SIGNINGCERTIFICATE%</string>
+            </dict>
+         </dict>
+      </array>
+   </dict>
+</plist>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads a Cisco AnyConnect package from a specified URL.</string>
+	<key>Identifier</key>
+	<string>corp.sap.maccoe.download.CiscoAnyConnect</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>Cisco AnyConnect Secure Mobility Client</string>
+        <key>VENDOR</key>
+        <string>Cisco</string>
+        <key>SIGNINGCERTIFICATE</key>
+        <string>Put_Signing_Certificate_into_AutoPkg_recipe_override</string>
+        <key>DOWNLOAD_URL</key>
+        <string>Put_download_URL_into_AutoPkg_recipe_override</string>
+        <key>DOWNLOAD_USERAGENT</key>
+        <string>Put_download_useragent_into_AutoPkg_recipe_override</string>
+        <key>DOWNLOAD_REFERER</key>
+        <string>Put_download_referer_into_AutoPkg_recipe_override</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>1.0.0</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>predicate</key>
+				<string>DOWNLOAD_URL == "Put_download_URL_into_AutoPkg_recipe_override"</string>
+			</dict>
+			<key>Processor</key>
+			<string>StopProcessingIf</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>predicate</key>
+				<string>DOWNLOAD_USERAGENT == "Put_download_useragent_into_AutoPkg_recipe_override"</string>
+			</dict>
+			<key>Processor</key>
+			<string>StopProcessingIf</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>predicate</key>
+				<string>DOWNLOAD_REFERER == "Put_download_referer_into_AutoPkg_recipe_override"</string>
+			</dict>
+			<key>Processor</key>
+			<string>StopProcessingIf</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+			<key>Arguments</key>
+			<dict>
+				<key>url</key>
+				<string>%DOWNLOAD_URL%</string>
+				<key>request_headers</key>
+				<dict>
+					<key>user-agent</key>
+					<string>%DOWNLOAD_USERAGENT%</string>
+					<key>referer</key>
+					<string>%DOWNLOAD_REFERER%</string>
+				</dict>
+			</dict>
+		</dict>
+ 		<dict>
+			<key>Processor</key>
+			<string>FlatPkgUnpacker</string>
+			<key>Arguments</key>
+			<dict>
+				<key>flat_pkg_path</key>
+				<string>%pathname%/AnyConnect.pkg</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/%VENDOR%/unpack</string>
+				<key>purge_destination</key>
+				<true/>
+			</dict>
+		</dict>
+ 		<dict>
+			<key>Processor</key>
+			<string>PkgPayloadUnpacker</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_payload_path</key>
+				<string>%RECIPE_CACHE_DIR%/%VENDOR%/unpack/vpn_module.pkg/Payload</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/%VENDOR%/vpn_module_payload</string>
+				<key>purge_destination</key>
+				<true/>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>Versioner</string>
+			<key>Arguments</key>
+			<dict>
+				<key>input_plist_path</key>
+				<string>%RECIPE_CACHE_DIR%/%VENDOR%/vpn_module_payload/Applications/Cisco/Cisco AnyConnect Secure Mobility Client.app/Contents/Info.plist</string>
+				<key>plist_version_key</key>
+				<string>CFBundleShortVersionString</string>
+			</dict>
+		</dict>
+		<dict>
+		<key>Processor</key>
+		<string>EndOfCheckPhase</string>
+		</dict>
+	</array>
+</dict>
+</plist>
