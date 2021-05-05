@@ -28,7 +28,7 @@
         <key>MinimumVersion</key>
         <string>1.0.0</string>
         <key>ParentRecipe</key>
-        <string>corp.sap.maccoe.pkg.sapgui</string>
+        <string>corp.sap.maccoe.sign.sapgui</string>
         <key>Process</key>
         <array>
             <dict>
