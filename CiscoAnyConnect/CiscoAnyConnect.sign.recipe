@@ -3,7 +3,7 @@
 <plist version="1.0">
    <dict>
       <key>Description</key>
-      <string>Downloads latest Atom zip file and builds a package. The installer package includes a preinstall script that will check for an existing Atom.app in /Applications and remove it if found. It also contains a postinstall script which configures automatic Chrome updates for all users.</string>
+      <string>Signs a provided installer package using a signing certificate identifier.</string>
       <key>Identifier</key>
       <string>corp.sap.maccoe.sign.CiscoAnyConnect</string>
       <key>Input</key>
