@@ -52,6 +52,8 @@ If you need more packages installing, you should make a copy of this recipe and 
 		<string>false</string>
 		<key>DISABLE_CUSTOMER_EXPERIENCE_FEEDBACK</key>
 		<string>false</string>
+        <key>HIDE_UNINSTALLERS</key>
+        <string>1</string>
 		<key>PACKAGER</key>
         <string>Put_packager_into_AutoPkg_recipe_override</string>
         <key>SOFTWARETITLE</key>
@@ -260,30 +262,66 @@ If you need more packages installing, you should make a copy of this recipe and 
 				<key>file_content</key>
 				<string>#!/bin/bash
 
-# postinstall.sh, 0.1.3
+# postinstall.sh, 0.1.8
 # (c) 2017-2020, SAP SE (Marc Thielemann &lt;marc.thielemann@sap.com&gt;)
 
 # latest change:
-# 2021/03/26, Jeremy Reichman &lt;jeremy.reichman@sap.com&gt;
+# 2021/06/22, Jeremy Reichman &lt;jeremy.reichman@sap.com&gt;
 
 
 packagePath=&quot;${0%/*}/AnyConnect.pkg&quot;
 choicesXML=&quot;${0%/*}/InstallerChoices.xml&quot;
+# Set value in AutoPkg override, default is 1 for &quot;true&quot;
+hideUninstallers=&quot;%HIDE_UNINSTALLERS%&quot;
+# Array of uninstall application bundles on the installer&apos;s target volume
+if [[ -n $3 ]]; then
+    targetVolume=$3
+else
+    targetVolume=&quot;&quot;
+fi
+uninstallAppBundlePaths=(
+		&quot;${targetVolume}/Applications/Cisco/Uninstall AnyConnect DART.app&quot;
+		&quot;${targetVolume}/Applications/Cisco/Uninstall AnyConnect.app&quot;
+	)
 exitCode=0
 
-if [[ -r &quot;$packagePath&quot; &amp;&amp; -r &quot;$choicesXML&quot; ]]; then
 
-	if ! /usr/sbin/installer -applyChoiceChangesXML &quot;$choicesXML&quot; -pkg &quot;$packagePath&quot; -target &quot;$3&quot;; then
-		/usr/bin/logger &quot;SAPCorp: ERROR! Installation of package $packagePath failed&quot;
+# Run embedded installer with the Choice Changes XML
+if [[ -r &quot;${packagePath}&quot; &amp;&amp; -r &quot;${choicesXML}&quot; ]]; then
+	if ! /usr/sbin/installer -applyChoiceChangesXML &quot;${choicesXML}&quot; -pkg &quot;${packagePath}&quot; -target &quot;$3&quot;; then
+		echo &quot;Installation of package \&quot;${packagePath}\&quot; failed.&quot;
 		exitCode=1
 	fi
-
 else
-	/usr/bin/logger &quot;SAPCorp: ERROR! Package $packagePath not found&quot;
+	echo &quot;Package \&quot;${packagePath}\&quot; not found.&quot;
 	exitCode=1
 fi
 
-exit $exitCode
+# Hide uninstallers
+# Override will specify 1 as &quot;true&quot;
+# Set to another value to specify &quot;false&quot;
+# If variable is unset/null or still contains an AutoPkg variable reference, treat as &quot;true&quot;
+if [[ &quot;${hideUninstallers}&quot; -eq 1 || \
+      -z &quot;${hideUninstallers}&quot; || \
+      &quot;${hideUninstallers}&quot; == &quot;%&quot;&quot;HIDE_UNINSTALLERS&quot;&quot;%&quot; ]]; then
+	for uninstallAppBundlePath in &quot;${uninstallAppBundlePaths[@]}&quot;
+	do
+		if [[ -d &quot;${uninstallAppBundlePath}&quot; ]]; then
+			if /usr/bin/chflags hidden &quot;${uninstallAppBundlePath}&quot;; then
+				echo &quot;Uninstaller app bundle \&quot;${uninstallAppBundlePath}\&quot; was hidden successfully.&quot;
+			else
+				echo &quot;Uninstaller app bundle \&quot;${uninstallAppBundlePath}\&quot; was not hidden successfully.&quot;
+				exitCode=1
+			fi
+		else
+			echo &quot;Uninstaller app bundle \&quot;${uninstallAppBundlePath}\&quot; was not found and cannot be hidden.&quot;
+		fi
+    done
+else
+	echo &quot;Uninstallers will not be hidden.&quot;
+fi
+
+exit &quot;${exitCode}&quot;
 </string>
 				<key>file_mode</key>
 				<string>0755</string>
